@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - Page not found | Pipeworks DevOps Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+:root{--bg:#120a2b;--panel:#1c1240;--panel2:#251856;--line:#3a2a73;--violet:#8b5cf6;--violet2:#6d3df0;--sun:#ffd23f;--text:#efeaff;--muted:#a79ccf;--green:#7ee787;--red:#ff7b8a}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Sora",sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.5;min-height:100vh;display:flex;flex-direction:column}
+h1,h2,h3,h4{line-height:1.15}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1300px;margin:0 auto;padding:0 24px;width:100%}
+.material-symbols-outlined{font-size:24px}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.mono{font-family:"JetBrains Mono",monospace}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 26px;border-radius:999px;font-weight:700;font-size:15px;border:2px solid transparent;cursor:pointer;font-family:inherit;transition:background .25s,color .25s,border-color .25s}
+.btn-main{background:var(--violet);color:#fff}.btn-main:hover{background:var(--violet2)}
+.btn-ghost{border-color:var(--line);color:var(--text);background:transparent}.btn-ghost:hover{border-color:var(--sun);color:var(--sun)}
+.grad{background:linear-gradient(90deg,var(--violet),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* 404 hero */
+main{flex:1;display:flex;align-items:center}
+.err{position:relative;width:100%;padding:100px 0 60px;text-align:center;overflow:hidden}
+.err::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.14;pointer-events:none}
+.err::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0,rgba(139,92,246,.4),transparent 60%);pointer-events:none}
+.err .wrap{position:relative;z-index:1}
+.pill{display:inline-flex;align-items:center;gap:8px;background:rgba(28,18,64,.8);border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:22px;color:var(--muted)}
+.pill b{width:8px;height:8px;border-radius:50%;background:var(--red);animation:ping 1.8s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(255,123,138,0)}0%{box-shadow:0 0 0 0 rgba(255,123,138,.6)}}
+.logo{position:absolute;top:28px;left:clamp(20px,5vw,64px);z-index:2;display:block}
+.logo img{width:150px;height:auto;display:block}
+.big{display:flex;justify-content:center;align-items:center;gap:clamp(4px,1.5vw,16px);font-size:clamp(110px,22vw,260px);font-weight:800;line-height:1;margin-bottom:14px}
+.big .d{display:block;line-height:1;padding:0 .02em;background:linear-gradient(135deg,var(--violet),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big .zero{position:relative;display:flex;align-items:center;justify-content:center}
+.big .zero i{position:absolute;left:50%;top:50%;translate:-50% -50%;font-style:normal;font-size:.26em;color:var(--sun);pointer-events:none}
+.err h1{font-size:clamp(28px,4vw,46px);font-weight:800;letter-spacing:-1px;margin-bottom:14px}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em}
+.w>span{display:inline-block}
+.err p.lead{color:#c9bfee;font-size:17px;line-height:1.7;max-width:560px;margin:0 auto 30px}
+.btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:46px}
+
+/* terminal */
+.term{background:#0c0620;border:1px solid var(--line);border-radius:18px;max-width:640px;margin:0 auto;text-align:left;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 0 6px rgba(139,92,246,.08)}
+.term-bar{display:flex;gap:7px;padding:13px 16px;background:var(--panel);border-bottom:1px solid var(--line);align-items:center}
+.term-bar i{width:11px;height:11px;border-radius:50%;background:#ff5f56}
+.term-bar i:nth-child(2){background:#ffbd2e}.term-bar i:nth-child(3){background:#27c93f}
+.term-bar span{margin-left:10px;font-size:12px;color:var(--muted)}
+.term-body{padding:18px 22px;font-size:13px;line-height:2;min-height:190px}
+.term-body p{white-space:pre-wrap;color:#cfc5ff}
+.term-body .ok{color:var(--green)}.term-body .cmd{color:var(--sun)}.term-body .bad{color:var(--red)}
+.cursor{display:inline-block;width:8px;height:15px;background:var(--sun);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<main>
+<section class="err">
+  <a href="index.html" class="logo"><img src="./src/logo.webp" alt="Pipeworks"></a>
+  <div class="wrap">
+    <span class="pill mono"><b></b>HTTP 404 · Not Found</span>
+    <div class="big" aria-label="404">
+      <span class="d">4</span>
+      <span class="zero"><span class="d">0</span><i class="material-symbols-outlined">link_off</i></span>
+      <span class="d">4</span>
+    </div>
+    <h1 id="head">This page failed to deploy.</h1>
+    <p class="lead">The page you are looking for was moved, renamed or never made it to production. Let us get you back on a healthy route.</p>
+    <div class="btns">
+      <a href="index.html" class="btn btn-main"><span class="material-symbols-outlined">home</span>Back to home</a>
+      <button class="btn btn-ghost" id="backBtn" type="button"><span class="material-symbols-outlined">undo</span>Go back</button>
+    </div>
+    <div class="term" id="term">
+      <div class="term-bar"><i></i><i></i><i></i><span class="mono">troubleshoot.sh</span></div>
+      <div class="term-body mono" id="termBody"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+$("#backBtn").onclick = () => { history.length > 1 ? history.back() : (location.href = "index.html"); };
+
+const lines = [
+  ["cmd", "$ curl -I " + (location.pathname.split("/").pop() || "this-page")],
+  ["bad", "HTTP/1.1 404 Not Found"],
+  ["cmd", "$ kubectl get page"],
+  ["bad", "Error from server (NotFound): page not found"],
+  ["cmd", "$ pipeworks route --fix"],
+  ["ok", "✓ nearest healthy route: /index.html"],
+  ["ok", "✓ no data was lost, only the link"]
+];
+const body = $("#termBody");
+const hasGsap = typeof gsap !== "undefined" && !matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// split headings into words
+[["#head"]].forEach(([s]) => {
+  const h = $(s);
+  h.innerHTML = h.textContent.trim().split(" ").map(w => `<span class="w"><span>${w}</span></span>`).join(" ");
+});
+
+if (!hasGsap) {
+  body.innerHTML = lines.map(l => `<p class="${l[0]}">${l[1]}</p>`).join("");
+} else {
+    // hero intro
+  const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+  tl.from(".logo", { y: -24, opacity: 0, duration: .7 })
+    .from(".pill", { y: 24, opacity: 0, duration: .7 }, "-=.4")
+    .from(".big > *", { yPercent: 60, opacity: 0, scale: .6, duration: 1, stagger: .15, ease: "back.out(2)" }, "-=.4")
+    .from("#head .w>span", { yPercent: 120, rotate: 5, duration: .9, stagger: .07 }, "-=.5")
+    .from(".lead", { y: 24, opacity: 0, duration: .8 }, "-=.6")
+    .from(".btns .btn", { y: 24, opacity: 0, duration: .7, stagger: .12 }, "-=.5")
+    .from("#term", { y: 70, opacity: 0, scale: .94, duration: 1 }, "-=.5");
+
+  // broken-link icon wobbles inside the zero
+  gsap.to(".zero i", { rotation: 14, yoyo: true, repeat: -1, duration: .9, ease: "sine.inOut" });
+  gsap.to(".big", { y: -8, yoyo: true, repeat: -1, duration: 2.4, ease: "sine.inOut" });
+
+  // terminal typing
+  const typing = gsap.timeline({ delay: 1.6 });
+  lines.forEach(([cls, txt]) => {
+    const p = document.createElement("p"); p.className = cls; body.appendChild(p);
+    const o = { n: 0 };
+    typing.to(o, { n: txt.length, duration: Math.max(.35, txt.length * .026), ease: "none", onUpdate: () => p.textContent = txt.slice(0, Math.round(o.n)) }, ">+.14");
+  });
+  typing.add(() => { const c = document.createElement("span"); c.className = "cursor"; body.lastChild.appendChild(c); });
+
+}
+</script>
+</body>
+</html>

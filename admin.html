@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Pipeworks - DevOps Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200">
+    <style>
+        :root {
+            --ink: #120a2b;
+            --ink2: #251856;
+            --blue: #6d3df0;
+            --blue-d: #5528d6;
+            --orange: #e68a00;
+            --green: #12a05c;
+            --red: #e5484d;
+            --amber: #e69b00;
+            --paper: #f3f1fa;
+            --line: #e2dcf3;
+            --muted: #6a6388
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: "Sora", sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            min-height: 100vh;
+            overflow-x: hidden
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            line-height: 1.15
+        }
+
+        img {
+            display: block;
+            max-width: 100%
+        }
+
+        button,
+        input,
+        select {
+            font-family: inherit
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--orange);
+            outline-offset: 2px
+        }
+
+        .material-symbols-outlined {
+            font-size: 22px
+        }
+
+        .mono {
+            font-family: "JetBrains Mono", monospace
+        }
+
+        /* rail */
+        .rail {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 250px;
+            background: var(--ink);
+            color: #b3a9d9;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            padding: 18px 14px;
+            overflow: hidden
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            height: 48px;
+            margin-bottom: 18px;
+            padding-left: 6px
+        }
+
+        .brand img {
+            height: 34px;
+            width: auto;
+            cursor: pointer
+        }
+
+        .grp {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #6d6591;
+            padding: 14px 12px 6px
+        }
+
+        .rail nav {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            scrollbar-width: none
+        }
+
+        .rail button.nv {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: transparent;
+            color: inherit;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            margin-bottom: 3px;
+            transition: .2s;
+            text-align: left
+        }
+
+        .rail button.nv:hover {
+            background: rgba(255, 255, 255, .08);
+            color: #fff
+        }
+
+        .ib.burger{
+            display: none;
+        }
+
+        .rail button.nv.active {
+            background: var(--blue);
+            color: #fff
+        }
+
+        .rail .logout {
+            margin-top: 10px;
+            border-top: 1px solid #2c2058;
+            padding-top: 12px;
+            flex-shrink: 0
+        }
+
+        .scrim {
+            display: none
+        }
+
+        .rail-close {
+            display: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+            cursor: pointer;
+            place-items: center;
+            margin-left: auto
+        }
+
+        .side-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 16px;
+            padding: 12px;
+            margin-top: 10px
+        }
+
+        .side-user b {
+            display: block;
+            color: #fff;
+            font-size: 14px
+        }
+
+        .side-user small {
+            color: #8f86b8;
+            font-size: 12px
+        }
+
+        /* main */
+        .main {
+            margin-left: 250px;
+            min-height: 100vh;
+            min-width: 0
+        }
+
+        .head {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(243, 241, 250, .92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .head-in {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 30px
+        }
+
+        .burger {
+            display: none
+        }
+
+        .crumb {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 4px
+        }
+
+        .head h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1px
+        }
+
+        .head-r {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .ib {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            border: 1px solid var(--line);
+            background: #fff;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            color: var(--ink);
+            position: relative;
+            transition: .2s
+        }
+
+        .ib:hover {
+            border-color: var(--blue);
+            color: var(--blue)
+        }
+
+        .ib .dot {
+            position: absolute;
+            top: 8px;
+            right: 9px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--orange);
+            border: 2px solid #fff
+        }
+
+        .me {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .av {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--blue);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0
+        }
+
+        .av i {
+            font-style: normal
+        }
+
+        .av img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .av.sm {
+            width: 36px;
+            height: 36px;
+            font-size: 14px;
+            background: var(--orange)
+        }
+
+        .me b {
+            display: block;
+            font-size: 14px
+        }
+
+        .me small {
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .pop {
+            position: absolute;
+            right: 30px;
+            top: 72px;
+            width: 340px;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: 0 24px 50px rgba(18, 10, 43, .18);
+            padding: 18px;
+            display: none
+        }
+
+        .pop.show {
+            display: block
+        }
+
+        .pop h4 {
+            font-size: 18px;
+            margin-bottom: 6px
+        }
+
+        .page {
+            padding: 26px 30px 60px;
+            min-width: 0
+        }
+
+        .view {
+            display: none;
+            flex-direction: column;
+            gap: 22px;
+            min-width: 0
+        }
+
+        .view.active {
+            display: flex
+        }
+
+        .view>* {
+            min-width: 0;
+            max-width: 100%
+        }
+
+        /* tiles + stats */
+        .tiles,
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px
+        }
+
+        .tile {
+            border-radius: 24px;
+            padding: 24px;
+            color: #fff;
+            position: relative;
+            overflow: hidden
+        }
+
+        .tile::after {
+            content: "";
+            position: absolute;
+            right: -30px;
+            top: -30px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .14)
+        }
+
+        .tile .material-symbols-outlined {
+            background: rgba(255, 255, 255, .2);
+            border-radius: 13px;
+            padding: 10px;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1
+        }
+
+        .tile h3 {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1px
+        }
+
+        .tile p {
+            opacity: .9;
+            margin: 4px 0 10px;
+            font-size: 14px
+        }
+
+        .tile small {
+            background: rgba(255, 255, 255, .2);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 12px
+        }
+
+        .t-blue {
+            background: var(--blue)
+        }
+
+        .t-or {
+            background: var(--orange)
+        }
+
+        .t-ink {
+            background: var(--ink2)
+        }
+
+        .t-gr {
+            background: var(--green)
+        }
+
+        .stat {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .stat>.material-symbols-outlined {
+            width: 44px;
+            height: 44px;
+            border-radius: 13px;
+            background: var(--paper);
+            color: var(--blue);
+            display: grid;
+            place-items: center
+        }
+
+        .stat h3 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1px
+        }
+
+        .stat p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 3px
+        }
+
+        .stat small {
+            font-weight: 700;
+            font-size: 13px
+        }
+
+        .up {
+            color: var(--green)
+        }
+
+        .dn {
+            color: var(--red)
+        }
+
+        /* cards */
+        .card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            padding: 24px;
+            overflow-x: auto;
+            min-width: 0
+        }
+
+        .ch {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 18px
+        }
+
+        .ch h2 {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -.5px
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+            gap: 22px;
+            align-items: start
+        }
+
+        .stack {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            min-width: 0
+        }
+
+        .two {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 22px
+        }
+
+        .between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        /* chart */
+        .chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            height: 230px;
+            padding-top: 6px
+        }
+
+        .col {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 7px;
+            min-width: 0
+        }
+
+        .col i {
+            display: block;
+            width: 100%;
+            max-width: 54px;
+            background: #e4dcfa;
+            border-radius: 12px 12px 5px 5px;
+            transition: height .5s ease, background .2s
+        }
+
+        .col:hover i {
+            background: var(--blue)
+        }
+
+        .col.hi i {
+            background: var(--orange)
+        }
+
+        .col span {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--muted)
+        }
+
+        .col b {
+            font-size: 12.5px;
+            color: var(--muted);
+            font-weight: 600
+        }
+
+        .seg {
+            display: flex;
+            background: var(--paper);
+            border-radius: 30px;
+            padding: 4px
+        }
+
+        .seg button {
+            border: none;
+            background: transparent;
+            padding: 7px 15px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--muted);
+            cursor: pointer
+        }
+
+        .seg button.active {
+            background: var(--ink);
+            color: #fff
+        }
+
+        /* donut */
+        .donut-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 26px;
+            flex-wrap: wrap
+        }
+
+        .donut {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0
+        }
+
+        .donut::after {
+            content: attr(data-c);
+            position: absolute;
+            inset: 26px;
+            background: #fff;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            font-size: 18px;
+            text-align: center;
+            line-height: 1.1;
+            padding: 6px
+        }
+
+        .legend {
+            display: grid;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600
+        }
+
+        .legend span {
+            display: flex;
+            align-items: center;
+            gap: 9px
+        }
+
+        .legend i {
+            width: 12px;
+            height: 12px;
+            border-radius: 4px
+        }
+
+        .legend em {
+            margin-left: auto;
+            font-style: normal;
+            color: var(--muted);
+            padding-left: 14px
+        }
+
+        /* tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 540px
+        }
+
+        th {
+            text-align: left;
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 600;
+            padding: 10px 12px;
+            border-bottom: 2px solid var(--paper)
+        }
+
+        td {
+            padding: 13px 12px;
+            border-bottom: 1px solid var(--paper);
+            font-size: 14px;
+            white-space: nowrap
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none
+        }
+
+        tbody tr:hover {
+            background: #faf9fe
+        }
+
+        .cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: max-content
+        }
+
+        .cell b {
+            display: block
+        }
+
+        .cell small,
+        td small {
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        .badge.ok {
+            background: #e1f5ea;
+            color: var(--green)
+        }
+
+        .badge.blue {
+            background: #ece6ff;
+            color: var(--blue)
+        }
+
+        .badge.low {
+            background: #fff1d9;
+            color: #b97a00
+        }
+
+        .badge.out {
+            background: #fde8e9;
+            color: var(--red)
+        }
+
+        .bar {
+            height: 8px;
+            width: 110px;
+            background: var(--paper);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 4px
+        }
+
+        .bar.full {
+            width: 100%;
+            margin: 0
+        }
+
+        .bar i {
+            display: block;
+            height: 100%;
+            border-radius: 8px
+        }
+
+        .bar i.ok {
+            background: var(--green)
+        }
+
+        .bar i.low {
+            background: var(--amber)
+        }
+
+        .bar i.out {
+            background: var(--red)
+        }
+
+        .bar i.blue {
+            background: var(--blue)
+        }
+
+        .bar i.or {
+            background: var(--orange)
+        }
+
+        select.st {
+            border: none;
+            border-radius: 30px;
+            padding: 6px 10px;
+            font: 700 12px "Sora", sans-serif;
+            cursor: pointer
+        }
+
+        select.st.ok {
+            background: #e1f5ea;
+            color: var(--green)
+        }
+
+        select.st.blue {
+            background: #ece6ff;
+            color: var(--blue)
+        }
+
+        select.st.low {
+            background: #fff1d9;
+            color: #b97a00
+        }
+
+        select.st.out {
+            background: #fde8e9;
+            color: var(--red)
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 0;
+            border-bottom: 1px solid var(--paper)
+        }
+
+        .row:last-child {
+            border-bottom: none
+        }
+
+        .act {
+            display: flex;
+            gap: 12px;
+            padding: 11px 0;
+            border-bottom: 1px solid var(--paper)
+        }
+
+        .act:last-child {
+            border-bottom: none
+        }
+
+        .act p {
+            font-size: 14px;
+            line-height: 1.45
+        }
+
+        .act small {
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .ic {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            font-size: 20px
+        }
+
+        .ic.blue {
+            background: #ece6ff;
+            color: var(--blue)
+        }
+
+        .ic.orange {
+            background: #ffeed4;
+            color: var(--orange)
+        }
+
+        .ic.red {
+            background: #fde8e9;
+            color: var(--red)
+        }
+
+        .ic.amber {
+            background: #fff1d9;
+            color: #b97a00
+        }
+
+        .ic.green {
+            background: #e1f5ea;
+            color: var(--green)
+        }
+
+        .target {
+            margin-bottom: 18px
+        }
+
+        .target:last-child {
+            margin-bottom: 0
+        }
+
+        .target .between {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px
+        }
+
+        .dist {
+            display: grid;
+            grid-template-columns: 110px minmax(0, 1fr) 64px;
+            gap: 12px;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px
+        }
+
+        .dist span:last-child {
+            text-align: right;
+            color: var(--muted)
+        }
+
+        /* chips, buttons */
+        .chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .chip {
+            padding: 8px 17px;
+            border-radius: 30px;
+            border: 1.5px solid var(--line);
+            background: #fff;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .chip:hover {
+            border-color: var(--blue)
+        }
+
+        .chip.active {
+            background: var(--ink);
+            border-color: var(--ink);
+            color: #fff
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 20px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform .2s, background .2s;
+            color: #fff;
+            background: var(--blue)
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: var(--blue-d)
+        }
+
+        .btn-sm {
+            padding: 7px 13px;
+            border-radius: 9px;
+            border: 1.5px solid var(--line);
+            background: #fff;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .btn-sm:hover {
+            border-color: var(--blue);
+            color: var(--blue)
+        }
+
+        .empty {
+            display: none;
+            text-align: center;
+            color: var(--muted);
+            padding: 28px
+        }
+
+        .ships {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px
+        }
+
+        .ship {
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 0
+        }
+
+        .ship p {
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 26px;
+            left: 50%;
+            transform: translate(-50%, 30px);
+            background: var(--ink);
+            color: #fff;
+            padding: 14px 22px;
+            border-radius: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s;
+            z-index: 400
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translate(-50%, 0)
+        }
+
+        .toast .material-symbols-outlined {
+            color: #4ade80
+        }
+
+        .ship-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 14px
+        }
+
+        .welcome {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            min-height: 150px;
+            display: flex;
+            align-items: flex-end;
+            color: #fff;
+            background: var(--ink2)
+        }
+
+        .welcome img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: .45
+        }
+
+        .welcome::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(18, 10, 43, .92), rgba(18, 10, 43, .3));
+            z-index: 1
+        }
+
+        .welcome div {
+            position: relative;
+            z-index: 2;
+            padding: 26px 30px
+        }
+
+        .welcome h2 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -.5px;
+            margin-bottom: 6px
+        }
+
+        .welcome p {
+            font-size: 14px;
+            opacity: .85
+        }
+
+        .toplogo {
+            width: 120px;
+            display: none
+        }
+
+        @media(max-width:1200px) {
+
+            .tiles,
+            .stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+
+            .layout {
+                grid-template-columns: minmax(0, 1fr)
+            }
+
+            .ships {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+        }
+
+        @media(max-width:900px) {
+
+                .ib.burger{
+            display: block;
+        }
+
+            .rail {
+                width: min(300px, 82vw);
+                transform: translateX(-100%);
+                transition: transform .3s ease
+            }
+
+            .rail.open {
+                transform: none
+            }
+
+            .scrim.show {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(18, 10, 43, .55);
+                z-index: 90
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%
+            }
+
+            .burger,
+            .rail-close {
+                display: grid
+            }
+
+            .head-in {
+                padding: 12px 14px
+            }
+
+            .head h1 {
+                font-size: 22px
+            }
+
+            .page {
+                padding: 18px 14px 50px
+            }
+
+            .two {
+                grid-template-columns: minmax(0, 1fr)
+            }
+
+            .pop {
+                right: 12px;
+                left: 12px;
+                width: auto;
+                max-height: 70vh;
+                overflow-y: auto
+            }
+        }
+
+        @media(max-width:560px) {
+
+            .tiles,
+            .stats,
+            .ships {
+                grid-template-columns: minmax(0, 1fr)
+            }
+
+            .crumb,
+            #title,
+            .head-r .me .txt {
+                display: none
+            }
+
+            .toplogo {
+                display: block
+            }
+
+            .page {
+                padding: 14px 10px 45px
+            }
+
+            .welcome div {
+                padding: 20px
+            }
+
+            .welcome h2 {
+                font-size: 21px
+            }
+
+            .card {
+                padding: 16px;
+                border-radius: 18px
+            }
+
+            .chart {
+                gap: 7px;
+                height: 190px
+            }
+
+            .col span,
+            .col b {
+                font-size: 10px
+            }
+
+            .dist {
+                grid-template-columns: 90px minmax(0, 1fr) 56px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="rail" id="rail">
+        <div class="brand"><img src="./src/logo.webp" class="asidelogo" alt="Pipeworks logo"><button class="rail-close"
+                id="railClose" aria-label="Close menu"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <nav id="nav">
+            <div class="grp">Platform</div>
+            <button class="nv active" data-view="overview"><span
+                    class="material-symbols-outlined">space_dashboard</span>Overview</button>
+            <button class="nv" data-view="pipelines"><span
+                    class="material-symbols-outlined">rocket_launch</span>Pipelines</button>
+            <button class="nv" data-view="clusters"><span
+                    class="material-symbols-outlined">deployed_code</span>Clusters</button>
+            <button class="nv" data-view="incidents"><span
+                    class="material-symbols-outlined">crisis_alert</span>Incidents</button>
+            <div class="grp">Business</div>
+            <button class="nv" data-view="clients"><span class="material-symbols-outlined">group</span>Clients</button>
+            <button class="nv" data-view="cost"><span class="material-symbols-outlined">savings</span>Cloud
+                cost</button>
+        </nav>
+        <div class="side-user"><span class="av"><i class="ini">A</i><img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=70"
+                    alt="" onerror="this.remove()"></span>
+            <div><b class="uname">Arun Kumar</b><small>Platform admin</small></div>
+        </div>
+        <button class="nv logout" id="logout"><span class="material-symbols-outlined">logout</span>Logout</button>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <div class="main">
+        <header class="head">
+            <div class="head-in">
+                <div class="between" style="gap:14px">
+                    <button class="ib burger" id="burger" aria-label="Open menu"><span
+                            class="material-symbols-outlined">menu</span></button>
+                    <div>
+                        <div class="crumb">Dashboard / <span id="crumb">Overview</span></div>
+                        <h1 id="title">Overview</h1>
+                        <a href="admin.html"><img src="./src/logo.webp" alt="Pipeworks logo" class="toplogo"></a>
+                    </div>
+                </div>
+                <div class="head-r">
+                    <button class="ib" id="bell" aria-label="Notifications"><span
+                            class="material-symbols-outlined">notifications</span><span class="dot"></span></button>
+                    <div class="me"><span class="av"><i class="ini">A</i><img
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=70"
+                                alt="" onerror="this.remove()"></span>
+                        <div class="txt"><b class="uname">Arun Kumar</b><small>Platform admin</small></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pop" id="pop">
+                <h4>Notifications</h4>
+                <div class="act"><span class="material-symbols-outlined ic green">rocket_launch</span>
+                    <div>
+                        <p><b>PayLeaf</b> production deploy succeeded</p><small>2 min ago</small>
+                    </div>
+                </div>
+                <div class="act"><span class="material-symbols-outlined ic red">warning</span>
+                    <div>
+                        <p>CPU at 91% on <b>eks-cartly-prod</b></p><small>14 min ago</small>
+                    </div>
+                </div>
+                <div class="act"><span class="material-symbols-outlined ic amber">bug_report</span>
+                    <div>
+                        <p>Pipeline <b>zenbase-api</b> failed at test stage</p><small>40 min ago</small>
+                    </div>
+                </div>
+                <div class="act"><span class="material-symbols-outlined ic blue">shield</span>
+                    <div>
+                        <p>2 critical CVEs found in <b>nginx:1.21</b></p><small>1 hr ago</small>
+                    </div>
+                </div>
+                <div class="act"><span class="material-symbols-outlined ic green">person_add</span>
+                    <div>
+                        <p><b>NovaMart</b> signed the Growth plan</p><small>3 hr ago</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="page">
+
+            <!-- OVERVIEW -->
+            <section class="view active" id="overview">
+                <div class="welcome"><img
+                        src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1400&q=70"
+                        alt="" onerror="this.remove()">
+                    <div>
+                        <h2>Welcome back, <span class="uname2">Arun</span></h2>
+                        <p>All systems operational. 4 alerts need your attention today.</p>
+                    </div>
+                </div>
+                <div class="tiles">
+                    <div class="tile t-blue"><span class="material-symbols-outlined">monitor_heart</span>
+                        <h3>99.99%</h3>
+                        <p>Uptime, last 30 days</p><small>+0.01% vs last month</small>
+                    </div>
+                    <div class="tile t-or"><span class="material-symbols-outlined">rocket_launch</span>
+                        <h3>3,642</h3>
+                        <p>Deploys this month</p><small>+12.4% vs last month</small>
+                    </div>
+                    <div class="tile t-ink"><span class="material-symbols-outlined">deployed_code</span>
+                        <h3>48</h3>
+                        <p>Managed clusters</p><small>+3 new</small>
+                    </div>
+                    <div class="tile t-gr"><span class="material-symbols-outlined">savings</span>
+                        <h3>₹18.4L</h3>
+                        <p>Cloud cost saved</p><small>+9.2% this month</small>
+                    </div>
+                </div>
+                <div class="layout">
+                    <div class="stack">
+                        <div class="card">
+                            <div class="ch">
+                                <h2>Deployments overview</h2>
+                                <div class="seg" id="range"><button class="active" data-r="week">Week</button><button
+                                        data-r="month">Month</button><button data-r="year">Year</button></div>
+                            </div>
+                            <div class="chart" id="chart"></div>
+                        </div>
+                        <div class="two">
+                            <div class="card">
+                                <div class="ch">
+                                    <h2>Workload by service</h2>
+                                </div>
+                                <div class="donut-wrap">
+                                    <div class="donut" data-c="126 clients"
+                                        style="background:conic-gradient(var(--blue) 0 38%,var(--orange) 38% 67%,var(--ink2) 67% 85%,var(--green) 85% 100%)">
+                                    </div>
+                                    <div class="legend"><span><i
+                                                style="background:var(--blue)"></i>CI/CD<em>38%</em></span><span><i
+                                                style="background:var(--orange)"></i>Kubernetes<em>29%</em></span><span><i
+                                                style="background:var(--ink2)"></i>Monitoring<em>18%</em></span><span><i
+                                                style="background:var(--green)"></i>DevSecOps<em>15%</em></span></div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="ch">
+                                    <h2>Open alerts</h2><span class="badge out">4 alerts</span>
+                                </div>
+                                <div class="row">
+                                    <div class="cell"><span class="material-symbols-outlined ic red">memory</span>
+                                        <div><b>eks-cartly-prod</b><small>CPU at 91%</small></div>
+                                    </div><button class="btn-sm errorpage">Scale</button>
+                                </div>
+                                <div class="row">
+                                    <div class="cell"><span class="material-symbols-outlined ic amber">storage</span>
+                                        <div><b>pg-payleaf-01</b><small>Disk at 84%</small></div>
+                                    </div><button class="btn-sm errorpage">Expand</button>
+                                </div>
+                                <div class="row">
+                                    <div class="cell"><span class="material-symbols-outlined ic red">shield</span>
+                                        <div><b>nginx:1.21 image</b><small>2 critical CVEs</small></div>
+                                    </div><button class="btn-sm errorpage">Patch</button>
+                                </div>
+                                <div class="row">
+                                    <div class="cell"><span class="material-symbols-outlined ic amber">schedule</span>
+                                        <div><b>TLS certificate</b><small>Expires in 6 days</small></div>
+                                    </div><button class="btn-sm errorpage">Renew</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="ch">
+                                <h2>Recent deployments</h2><button class="btn-sm errorpage">View all</button>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Deploy</th>
+                                        <th>Client</th>
+                                        <th>Service</th>
+                                        <th>Duration</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><b>#D-9041</b></td>
+                                        <td>PayLeaf</td>
+                                        <td>payments-api v2.14</td>
+                                        <td>3m 42s</td>
+                                        <td><span class="badge ok">Success</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>#D-9040</b></td>
+                                        <td>Cartly</td>
+                                        <td>checkout-web v5.2</td>
+                                        <td>4m 10s</td>
+                                        <td><span class="badge blue">Running</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>#D-9039</b></td>
+                                        <td>Zenbase</td>
+                                        <td>zenbase-api v1.9</td>
+                                        <td>2m 05s</td>
+                                        <td><span class="badge out">Failed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>#D-9038</b></td>
+                                        <td>NovaMart</td>
+                                        <td>catalog-svc v3.0</td>
+                                        <td>3m 18s</td>
+                                        <td><span class="badge ok">Success</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>#D-9037</b></td>
+                                        <td>Finwise</td>
+                                        <td>ledger-core v7.1</td>
+                                        <td>5m 33s</td>
+                                        <td><span class="badge ok">Success</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="stack">
+                        <div class="card">
+                            <div class="ch">
+                                <h2>Monthly targets</h2>
+                            </div>
+                            <div class="target">
+                                <div class="between"><span>Uptime SLA</span><span>99.99% / 99.95%</span></div>
+                                <div class="bar full"><i class="ok" style="width:100%"></i></div>
+                            </div>
+                            <div class="target">
+                                <div class="between"><span>Deploy success rate</span><span>96.4% / 98%</span></div>
+                                <div class="bar full"><i class="blue" style="width:90%"></i></div>
+                            </div>
+                            <div class="target">
+                                <div class="between"><span>Mean time to recover</span><span>18 min / 15 min</span></div>
+                                <div class="bar full"><i class="low" style="width:72%"></i></div>
+                            </div>
+                            <div class="target">
+                                <div class="between"><span>Cost savings</span><span>₹18.4L / ₹20L</span></div>
+                                <div class="bar full"><i class="or" style="width:92%"></i></div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="ch">
+                                <h2>Live activity</h2>
+                            </div>
+                            <div class="act"><span class="material-symbols-outlined ic green">rocket_launch</span>
+                                <div>
+                                    <p><b>PayLeaf</b> production deploy succeeded</p><small>2 min ago</small>
+                                </div>
+                            </div>
+                            <div class="act"><span class="material-symbols-outlined ic red">warning</span>
+                                <div>
+                                    <p>CPU at 91% on <b>eks-cartly-prod</b></p><small>14 min ago</small>
+                                </div>
+                            </div>
+                            <div class="act"><span class="material-symbols-outlined ic amber">bug_report</span>
+                                <div>
+                                    <p>Pipeline <b>zenbase-api</b> failed at test stage</p><small>40 min ago</small>
+                                </div>
+                            </div>
+                            <div class="act"><span class="material-symbols-outlined ic blue">shield</span>
+                                <div>
+                                    <p>2 critical CVEs found in <b>nginx:1.21</b></p><small>1 hr ago</small>
+                                </div>
+                            </div>
+                            <div class="act"><span class="material-symbols-outlined ic orange">savings</span>
+                                <div>
+                                    <p>Spot fleet saved <b>₹42K</b> for NovaMart</p><small>2 hr ago</small>
+                                </div>
+                            </div>
+                            <div class="act"><span class="material-symbols-outlined ic green">person_add</span>
+                                <div>
+                                    <p><b>NovaMart</b> signed the Growth plan</p><small>3 hr ago</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PIPELINES -->
+            <section class="view" id="pipelines">
+                <div class="stats">
+                    <div class="stat"><span class="material-symbols-outlined">account_tree</span>
+                        <div>
+                            <h3>412</h3>
+                            <p>Active pipelines</p>
+                        </div><small class="up">+14 this month</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">task_alt</span>
+                        <div>
+                            <h3>96.4%</h3>
+                            <p>Success rate</p>
+                        </div><small class="up">+1.2% this month</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">timer</span>
+                        <div>
+                            <h3>3m 48s</h3>
+                            <p>Average build time</p>
+                        </div><small class="up">-22s vs last month</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">error</span>
+                        <div>
+                            <h3>7</h3>
+                            <p>Failed today</p>
+                        </div><small class="dn">Needs attention</small>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="ch">
+                        <h2>All pipelines</h2>
+                        <div class="chips" id="pipeChips"><button class="chip active" data-f="all">All</button><button
+                                class="chip" data-f="success">Success</button><button class="chip"
+                                data-f="running">Running</button><button class="chip" data-f="failed">Failed</button>
+                        </div>
+                        <button class="btn errorpage"><span class="material-symbols-outlined">add</span>New
+                            pipeline</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pipeline</th>
+                                <th>Client</th>
+                                <th>Branch</th>
+                                <th>Tool</th>
+                                <th>Duration</th>
+                                <th>Last run</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="s" id="pipeBody">
+                            <tr data-status="success">
+                                <td>
+                                    <div class="cell"><span
+                                            class="material-symbols-outlined ic blue">rocket_launch</span>
+                                        <div><b>payments-api</b><small>PL-1001</small></div>
+                                    </div>
+                                </td>
+                                <td>PayLeaf</td>
+                                <td class="mono">main</td>
+                                <td>GitHub Actions</td>
+                                <td>3m 42s</td>
+                                <td>2 min ago</td>
+                                <td><span class="badge ok">Success</span></td>
+                            </tr>
+                            <tr data-status="running">
+                                <td>
+                                    <div class="cell"><span
+                                            class="material-symbols-outlined ic blue">rocket_launch</span>
+                                        <div><b>checkout-web</b><small>PL-1002</small></div>
+                                    </div>
+                                </td>
+                                <td>Cartly</td>
+                                <td class="mono">release/5.2</td>
+                                <td>Jenkins</td>
+                                <td>4m 10s</td>
+                                <td>Running now</td>
+                                <td><span class="badge blue">Running</span></td>
+                            </tr>
+                            <tr data-status="failed">
+                                <td>
+                                    <div class="cell"><span
+                                            class="material-symbols-outlined ic red">rocket_launch</span>
+                                        <div><b>zenbase-api</b><small>PL-1003</small></div>
+                                    </div>
+                                </td>
+                                <td>Zenbase</td>
+                                <td class="mono">develop</td>
+                                <td>GitLab CI</td>
+                                <td>2m 05s</td>
+                                <td>40 min ago</td>
+                                <td><span class="badge out">Failed</span></td>
+                            </tr>
+                            <tr data-status="success">
+                                <td>
+                                    <div class="cell"><span
+                                            class="material-symbols-outlined ic blue">rocket_launch</span>
+                                        <div><b>catalog-svc</b><small>PL-1004</small></div>
+                                    </div>
+                                </td>
+                                <td>NovaMart</td>
+                                <td class="mono">main</td>
+                                <td>GitHub Actions</td>
+                                <td>3m 18s</td>
+                                <td>1 hr ago</td>
+                                <td><span class="badge ok">Success</span></td>
+                            </tr>
+                            <tr data-status="success">
+                                <td>
+                                    <div class="cell"><span
+                                            class="material-symbols-outlined ic blue">rocket_launch</span>
+                                        <div><b>ledger-core</b><small>PL-1005</small></div>
+                                    </div>
+                                </td>
+                                <td>Finwise</td>
+                                <td class="mono">main</td>
+                                <td>Jenkins</td>
+                                <td>5m 33s</td>
+                                <td>2 hr ago</td>
+                                <td><span class="badge ok">Success</span></td>
+                            </tr>
+                            <tr data-status="running">
+                                <td>
+                                    <div class="cell"><span
+                                            class="material-symbols-outlined ic blue">rocket_launch</span>
+                                        <div><b>mobile-gateway</b><small>PL-1006</small></div>
+                                    </div>
+                                </td>
+                                <td>PayLeaf</td>
+                                <td class="mono">feature/otp</td>
+                                <td>GitHub Actions</td>
+                                <td>1m 51s</td>
+                                <td>Running now</td>
+                                <td><span class="badge blue">Running</span></td>
+                            </tr>
+                            <tr data-status="failed">
+                                <td>
+                                    <div class="cell"><span
+                                            class="material-symbols-outlined ic red">rocket_launch</span>
+                                        <div><b>search-indexer</b><small>PL-1007</small></div>
+                                    </div>
+                                </td>
+                                <td>Cartly</td>
+                                <td class="mono">main</td>
+                                <td>GitLab CI</td>
+                                <td>6m 02s</td>
+                                <td>3 hr ago</td>
+                                <td><span class="badge out">Failed</span></td>
+                            </tr>
+                            <tr data-status="success">
+                                <td>
+                                    <div class="cell"><span
+                                            class="material-symbols-outlined ic blue">rocket_launch</span>
+                                        <div><b>auth-service</b><small>PL-1008</small></div>
+                                    </div>
+                                </td>
+                                <td>Zenbase</td>
+                                <td class="mono">main</td>
+                                <td>ArgoCD</td>
+                                <td>2m 47s</td>
+                                <td>4 hr ago</td>
+                                <td><span class="badge ok">Success</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="empty">No pipelines match your filter.</p>
+                </div>
+            </section>
+
+            <!-- CLUSTERS -->
+            <section class="view" id="clusters">
+                <div class="stats">
+                    <div class="stat"><span class="material-symbols-outlined">deployed_code</span>
+                        <div>
+                            <h3>48</h3>
+                            <p>Managed clusters</p>
+                        </div><small class="up">+3 this month</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">dns</span>
+                        <div>
+                            <h3>612</h3>
+                            <p>Nodes running</p>
+                        </div><small class="up">Autoscaling on</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">memory</span>
+                        <div>
+                            <h3>58%</h3>
+                            <p>Average CPU use</p>
+                        </div><small class="up">Healthy range</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">warning</span>
+                        <div>
+                            <h3>3</h3>
+                            <p>Clusters need attention</p>
+                        </div><small class="dn">High load</small>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="ch">
+                        <h2>Cluster health</h2>
+                    </div>
+                    <div class="ships">
+                        <div class="ship"><img class="ship-img"
+                                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=70"
+                                alt="Server racks" loading="lazy" onerror="this.remove()">
+                            <div class="between"><b>eks-payleaf-prod</b><span class="badge ok">Healthy</span></div>
+                            <p>AWS, ap-south-1, 24 nodes</p>
+                            <div class="bar full"><i class="ok" style="width:52%"></i></div>
+                            <div class="between muted"><span>CPU 52%</span><span>K8s 1.30</span></div>
+                        </div>
+                        <div class="ship"><img class="ship-img"
+                                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=70"
+                                alt="Global cloud network" loading="lazy" onerror="this.remove()">
+                            <div class="between"><b>eks-cartly-prod</b><span class="badge out">High CPU</span></div>
+                            <p>AWS, ap-south-1, 32 nodes</p>
+                            <div class="bar full"><i class="out" style="width:91%"></i></div>
+                            <div class="between muted"><span>CPU 91%</span><span>K8s 1.29</span></div>
+                        </div>
+                        <div class="ship"><img class="ship-img"
+                                src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=70"
+                                alt="Data center" loading="lazy" onerror="this.remove()">
+                            <div class="between"><b>aks-finwise-prod</b><span class="badge ok">Healthy</span></div>
+                            <p>Azure, Central India, 18 nodes</p>
+                            <div class="bar full"><i class="ok" style="width:44%"></i></div>
+                            <div class="between muted"><span>CPU 44%</span><span>K8s 1.30</span></div>
+                        </div>
+                        <div class="ship"><img class="ship-img"
+                                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=70"
+                                alt="Cloud infrastructure" loading="lazy" onerror="this.remove()">
+                            <div class="between"><b>gke-novamart-prod</b><span class="badge low">Upgrading</span></div>
+                            <p>GCP, asia-south1, 20 nodes</p>
+                            <div class="bar full"><i class="low" style="width:63%"></i></div>
+                            <div class="between muted"><span>CPU 63%</span><span>K8s 1.29 to 1.30</span></div>
+                        </div>
+                        <div class="ship"><img class="ship-img"
+                                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=70"
+                                alt="Secure servers" loading="lazy" onerror="this.remove()">
+                            <div class="between"><b>eks-zenbase-stage</b><span class="badge ok">Healthy</span></div>
+                            <p>AWS, ap-south-1, 8 nodes</p>
+                            <div class="bar full"><i class="ok" style="width:36%"></i></div>
+                            <div class="between muted"><span>CPU 36%</span><span>K8s 1.30</span></div>
+                        </div>
+                        <div class="ship"><img class="ship-img"
+                                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=70"
+                                alt="Server room" loading="lazy" onerror="this.remove()">
+                            <div class="between"><b>aks-medilink-prod</b><span class="badge low">Warning</span></div>
+                            <p>Azure, South India, 14 nodes</p>
+                            <div class="bar full"><i class="low" style="width:78%"></i></div>
+                            <div class="between muted"><span>CPU 78%</span><span>K8s 1.28</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="ch">
+                        <h2>Cloud providers</h2>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Provider</th>
+                                <th>Clusters</th>
+                                <th>Nodes</th>
+                                <th>Monthly spend</th>
+                                <th>Savings found</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>AWS</b></td>
+                                <td>26</td>
+                                <td>340</td>
+                                <td>₹21.6L</td>
+                                <td>₹9.4L</td>
+                            </tr>
+                            <tr>
+                                <td><b>Azure</b></td>
+                                <td>14</td>
+                                <td>168</td>
+                                <td>₹12.2L</td>
+                                <td>₹5.8L</td>
+                            </tr>
+                            <tr>
+                                <td><b>Google Cloud</b></td>
+                                <td>8</td>
+                                <td>104</td>
+                                <td>₹7.5L</td>
+                                <td>₹3.2L</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- INCIDENTS -->
+            <section class="view" id="incidents">
+                <div class="stats">
+                    <div class="stat"><span class="material-symbols-outlined">crisis_alert</span>
+                        <div>
+                            <h3>23</h3>
+                            <p>Incidents this month</p>
+                        </div><small class="up">-18% vs last month</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">pending_actions</span>
+                        <div>
+                            <h3>4</h3>
+                            <p>Open now</p>
+                        </div><small class="dn">2 high severity</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">timer</span>
+                        <div>
+                            <h3>18 min</h3>
+                            <p>Mean time to recover</p>
+                        </div><small class="up">-4 min this month</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">support_agent</span>
+                        <div>
+                            <h3>15 min</h3>
+                            <p>Average response</p>
+                        </div><small class="up">Within SLA</small>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="ch">
+                        <h2>Incident log</h2>
+                        <div class="chips" id="incChips"><button class="chip active" data-f="all">All</button><button
+                                class="chip" data-f="open">Open</button><button class="chip"
+                                data-f="investigating">Investigating</button><button class="chip"
+                                data-f="resolved">Resolved</button></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Incident</th>
+                                <th>Client</th>
+                                <th>Issue</th>
+                                <th>Severity</th>
+                                <th>Opened</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="s" id="incBody">
+                            <tr data-status="open">
+                                <td><b>#INC-318</b></td>
+                                <td>Cartly</td>
+                                <td>CPU saturation on checkout pods</td>
+                                <td><span class="badge out">High</span></td>
+                                <td>14 min ago</td>
+                                <td><select class="st out">
+                                        <option selected>Open</option>
+                                        <option>Investigating</option>
+                                        <option>Resolved</option>
+                                    </select></td>
+                            </tr>
+                            <tr data-status="investigating">
+                                <td><b>#INC-317</b></td>
+                                <td>PayLeaf</td>
+                                <td>Database disk at 84%</td>
+                                <td><span class="badge low">Medium</span></td>
+                                <td>1 hr ago</td>
+                                <td><select class="st blue">
+                                        <option>Open</option>
+                                        <option selected>Investigating</option>
+                                        <option>Resolved</option>
+                                    </select></td>
+                            </tr>
+                            <tr data-status="open">
+                                <td><b>#INC-316</b></td>
+                                <td>Zenbase</td>
+                                <td>Pipeline failing at test stage</td>
+                                <td><span class="badge low">Medium</span></td>
+                                <td>2 hr ago</td>
+                                <td><select class="st out">
+                                        <option selected>Open</option>
+                                        <option>Investigating</option>
+                                        <option>Resolved</option>
+                                    </select></td>
+                            </tr>
+                            <tr data-status="resolved">
+                                <td><b>#INC-315</b></td>
+                                <td>NovaMart</td>
+                                <td>Ingress 502 errors</td>
+                                <td><span class="badge out">High</span></td>
+                                <td>Yesterday</td>
+                                <td><select class="st ok">
+                                        <option>Open</option>
+                                        <option>Investigating</option>
+                                        <option selected>Resolved</option>
+                                    </select></td>
+                            </tr>
+                            <tr data-status="resolved">
+                                <td><b>#INC-314</b></td>
+                                <td>Finwise</td>
+                                <td>Expired TLS certificate</td>
+                                <td><span class="badge low">Medium</span></td>
+                                <td>Yesterday</td>
+                                <td><select class="st ok">
+                                        <option>Open</option>
+                                        <option>Investigating</option>
+                                        <option selected>Resolved</option>
+                                    </select></td>
+                            </tr>
+                            <tr data-status="investigating">
+                                <td><b>#INC-313</b></td>
+                                <td>Medilink</td>
+                                <td>Slow API response times</td>
+                                <td><span class="badge low">Medium</span></td>
+                                <td>2 days ago</td>
+                                <td><select class="st blue">
+                                        <option>Open</option>
+                                        <option selected>Investigating</option>
+                                        <option>Resolved</option>
+                                    </select></td>
+                            </tr>
+                            <tr data-status="resolved">
+                                <td><b>#INC-312</b></td>
+                                <td>PayLeaf</td>
+                                <td>Failed node in worker pool</td>
+                                <td><span class="badge ok">Low</span></td>
+                                <td>3 days ago</td>
+                                <td><select class="st ok">
+                                        <option>Open</option>
+                                        <option>Investigating</option>
+                                        <option selected>Resolved</option>
+                                    </select></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="empty">No incidents match your filter.</p>
+                </div>
+            </section>
+
+            <!-- CLIENTS -->
+            <section class="view" id="clients">
+                <div class="stats">
+                    <div class="stat"><span class="material-symbols-outlined">group</span>
+                        <div>
+                            <h3>126</h3>
+                            <p>Total clients</p>
+                        </div><small class="up">+4.1% this month</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">person_add</span>
+                        <div>
+                            <h3>7</h3>
+                            <p>New this month</p>
+                        </div><small class="up">+2 vs last month</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">workspace_premium</span>
+                        <div>
+                            <h3>58</h3>
+                            <p>Growth and Enterprise</p>
+                        </div><small class="up">+5 this month</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">autorenew</span>
+                        <div>
+                            <h3>98%</h3>
+                            <p>Annual renewal rate</p>
+                        </div><small class="up">+1% this year</small>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="ch">
+                        <h2>Client directory</h2>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>City</th>
+                                <th>Pipelines</th>
+                                <th>Clusters</th>
+                                <th>Monthly fee</th>
+                                <th>Plan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="cell"><span class="av sm"><i>P</i><img
+                                                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=120&q=70"
+                                                alt="" loading="lazy" onerror="this.remove()"></span><b>PayLeaf</b>
+                                    </div>
+                                </td>
+                                <td>Chennai</td>
+                                <td>24</td>
+                                <td>3</td>
+                                <td>₹1,29,999</td>
+                                <td><span class="badge low">Growth</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cell"><span class="av sm"><i>C</i><img
+                                                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=120&q=70"
+                                                alt="" loading="lazy" onerror="this.remove()"></span><b>Cartly</b></div>
+                                </td>
+                                <td>Bengaluru</td>
+                                <td>31</td>
+                                <td>4</td>
+                                <td>₹1,29,999</td>
+                                <td><span class="badge low">Growth</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cell"><span class="av sm"><i>F</i><img
+                                                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=120&q=70"
+                                                alt="" loading="lazy" onerror="this.remove()"></span><b>Finwise</b>
+                                    </div>
+                                </td>
+                                <td>Mumbai</td>
+                                <td>42</td>
+                                <td>6</td>
+                                <td>₹3,40,000</td>
+                                <td><span class="badge blue">Enterprise</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cell"><span class="av sm"><i>N</i><img
+                                                src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=120&q=70"
+                                                alt="" loading="lazy" onerror="this.remove()"></span><b>NovaMart</b>
+                                    </div>
+                                </td>
+                                <td>Hyderabad</td>
+                                <td>18</td>
+                                <td>2</td>
+                                <td>₹1,29,999</td>
+                                <td><span class="badge low">Growth</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cell"><span class="av sm"><i>Z</i><img
+                                                src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=120&q=70"
+                                                alt="" loading="lazy" onerror="this.remove()"></span><b>Zenbase</b>
+                                    </div>
+                                </td>
+                                <td>Coimbatore</td>
+                                <td>9</td>
+                                <td>1</td>
+                                <td>₹49,999</td>
+                                <td><span class="badge ok">Starter</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cell"><span class="av sm"><i>M</i><img
+                                                src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=120&q=70"
+                                                alt="" loading="lazy" onerror="this.remove()"></span><b>Medilink</b>
+                                    </div>
+                                </td>
+                                <td>Kochi</td>
+                                <td>6</td>
+                                <td>1</td>
+                                <td>₹49,999</td>
+                                <td><span class="badge ok">Starter</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- CLOUD COST -->
+            <section class="view" id="cost">
+                <div class="stats">
+                    <div class="stat"><span class="material-symbols-outlined">payments</span>
+                        <div>
+                            <h3>₹41.3L</h3>
+                            <p>Client cloud spend</p>
+                        </div><small class="up">-9.2% vs last month</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">savings</span>
+                        <div>
+                            <h3>₹18.4L</h3>
+                            <p>Savings this month</p>
+                        </div><small class="up">+₹1.6L vs last month</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">percent</span>
+                        <div>
+                            <h3>31%</h3>
+                            <p>Average cost reduction</p>
+                        </div><small class="up">+2.4% this month</small>
+                    </div>
+                    <div class="stat"><span class="material-symbols-outlined">delete_sweep</span>
+                        <div>
+                            <h3>214</h3>
+                            <p>Idle resources removed</p>
+                        </div><small class="up">+38 this week</small>
+                    </div>
+                </div>
+                <div class="two">
+                    <div class="card">
+                        <div class="ch">
+                            <h2>Savings by month</h2><span class="badge blue">2026</span>
+                        </div>
+                        <div class="chart" id="chartYear"></div>
+                    </div>
+                    <div class="card">
+                        <div class="ch">
+                            <h2>Spend by provider</h2>
+                        </div>
+                        <div class="donut-wrap">
+                            <div class="donut" data-c="AWS 52%"
+                                style="background:conic-gradient(var(--blue) 0 52%,var(--orange) 52% 82%,var(--green) 82% 100%)">
+                            </div>
+                            <div class="legend"><span><i
+                                        style="background:var(--blue)"></i>AWS<em>52%</em></span><span><i
+                                        style="background:var(--orange)"></i>Azure<em>30%</em></span><span><i
+                                        style="background:var(--green)"></i>Google Cloud<em>18%</em></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="two">
+                    <div class="card">
+                        <div class="ch">
+                            <h2>Savings by client</h2>
+                        </div>
+                        <div class="dist"><span>Finwise</span>
+                            <div class="bar full"><i class="blue" style="width:90%"></i></div><span>₹5.4L</span>
+                        </div>
+                        <div class="dist"><span>Cartly</span>
+                            <div class="bar full"><i class="blue" style="width:68%"></i></div><span>₹4.1L</span>
+                        </div>
+                        <div class="dist"><span>NovaMart</span>
+                            <div class="bar full"><i class="blue" style="width:52%"></i></div><span>₹3.1L</span>
+                        </div>
+                        <div class="dist"><span>PayLeaf</span>
+                            <div class="bar full"><i class="blue" style="width:40%"></i></div><span>₹2.4L</span>
+                        </div>
+                        <div class="dist"><span>Others</span>
+                            <div class="bar full"><i class="blue" style="width:57%"></i></div><span>₹3.4L</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="ch">
+                            <h2>Where savings come from</h2>
+                        </div>
+                        <div class="dist"><span>Right-sizing</span>
+                            <div class="bar full"><i class="or" style="width:44%"></i></div><span>44%</span>
+                        </div>
+                        <div class="dist"><span>Spot fleets</span>
+                            <div class="bar full"><i class="or" style="width:28%"></i></div><span>28%</span>
+                        </div>
+                        <div class="dist"><span>Idle cleanup</span>
+                            <div class="bar full"><i class="or" style="width:16%"></i></div><span>16%</span>
+                        </div>
+                        <div class="dist"><span>Reserved plans</span>
+                            <div class="bar full"><i class="or" style="width:12%"></i></div><span>12%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div class="toast" id="toast"><span class="material-symbols-outlined">check_circle</span><span id="toastMsg"></span>
+    </div>
+
+    <script>
+        const $ = s => document.querySelector(s), $$ = s => document.querySelectorAll(s);
+        const titles = { overview: "Overview", pipelines: "Pipelines", clusters: "Clusters", incidents: "Incidents", clients: "Clients", cost: "Cloud cost" };
+
+        /* toast */
+        let tt; function toast(m) { $("#toastMsg").textContent = m; $("#toast").classList.add("show"); clearTimeout(tt); tt = setTimeout(() => $("#toast").classList.remove("show"), 2600); }
+
+        /* navigation */
+        function showView(id) {
+            $$(".view").forEach(v => v.classList.toggle("active", v.id === id));
+            $$("#nav .nv").forEach(b => b.classList.toggle("active", b.dataset.view === id));
+            $("#title").textContent = titles[id]; $("#crumb").textContent = titles[id];
+            runFilters(); closeRail(); $("#pop").classList.remove("show");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        $$("#nav .nv").forEach(b => b.addEventListener("click", () => showView(b.dataset.view)));
+        function closeRail() { $("#rail").classList.remove("open"); $("#scrim").classList.remove("show"); }
+        $("#burger").addEventListener("click", () => { $("#rail").classList.add("open"); $("#scrim").classList.add("show"); });
+        $("#scrim").addEventListener("click", closeRail);
+        $("#railClose").addEventListener("click", closeRail);
+        $("#logout").addEventListener("click", () => { window.location.href = "index.html"; });
+        $(".asidelogo").addEventListener("click", () => { location.href = "admin.html"; });
+
+        /* user */
+        try { const e = localStorage.getItem("useremail"); if (e) $$(".uname").forEach(n => n.textContent = e); } catch (e) { }
+        $$(".uname2").forEach(n => n.textContent = $(".uname").textContent);
+        const initial = $(".uname").textContent.trim().charAt(0).toUpperCase();
+        $$(".av .ini").forEach(i => i.textContent = initial);
+
+        /* notifications */
+        $("#bell").addEventListener("click", e => { e.stopPropagation(); $("#pop").classList.toggle("show"); });
+        document.addEventListener("click", e => { if (!e.target.closest("#pop")) $("#pop").classList.remove("show"); });
+        document.addEventListener("keydown", e => { if (e.key === "Escape") $("#pop").classList.remove("show"); });
+
+        /* charts */
+        function draw(el, labels, vals, unit, hi) {
+            const max = Math.max(...vals);
+            el.innerHTML = labels.map((l, i) => '<div class="col' + (i === hi ? ' hi' : '') + '"><span>' + unit.pre + vals[i] + unit.suf + '</span><i style="height:' + Math.round(vals[i] / max * 78) + '%"></i><b>' + l + '</b></div>').join("");
+        }
+        const data = {
+            week: { l: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], v: [420, 510, 380, 610, 690, 240, 190], u: { pre: "", suf: "" }, h: 4 },
+            month: { l: ["W1", "W2", "W3", "W4", "W5", "W6"], v: [2.1, 2.6, 2.3, 3.1, 2.8, 3.6], u: { pre: "", suf: "K" }, h: 5 },
+            year: { l: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"], v: [9.8, 11.2, 12.4, 12.1, 13.6, 14.9, 15.8, 16.5, 17.3, 18.4], u: { pre: "₹", suf: "L" }, h: 9 }
+        };
+        function setRange(r) { const d = data[r]; draw($("#chart"), d.l, d.v, d.u, d.h); }
+        $$("#range button").forEach(b => b.addEventListener("click", () => { $$("#range button").forEach(x => x.classList.remove("active")); b.classList.add("active"); setRange(b.dataset.r); }));
+        setRange("week");
+        draw($("#chartYear"), data.year.l, data.year.v, data.year.u, data.year.h);
+
+        /* filters */
+        const filt = { pipeBody: "all", incBody: "all" };
+        function runFilters() {
+            $$(".view.active tbody.s").forEach(body => {
+                let n = 0;
+                [...body.rows].forEach(r => {
+                    const ok = filt[body.id] === "all" || r.dataset.status === filt[body.id];
+                    r.style.display = ok ? "" : "none"; if (ok) n++;
+                });
+                const em = body.closest(".card").querySelector(".empty"); if (em) em.style.display = n ? "none" : "block";
+            });
+        }
+        [["#pipeChips", "pipeBody"], ["#incChips", "incBody"]].forEach(([sel, key]) => $$(sel + " .chip").forEach(c => c.addEventListener("click", () => {
+            $$(sel + " .chip").forEach(x => x.classList.remove("active")); c.classList.add("active"); filt[key] = c.dataset.f; runFilters();
+        })));
+
+        /* incident status change */
+        const cls = { open: "out", investigating: "blue", resolved: "ok" };
+        document.addEventListener("change", e => {
+            if (e.target.classList.contains("st")) {
+                const v = e.target.value.toLowerCase();
+                e.target.className = "st " + cls[v];
+                e.target.closest("tr").dataset.status = v;
+                toast("Incident status updated to " + e.target.value); runFilters();
+            }
+        });
+
+        /* action buttons go to the 404 page, as in the original */
+        $$(".errorpage").forEach(el => el.addEventListener("click", () => location.href = "404.html"));
+    </script>
+</body>
+
+</html>
