@@ -491,6 +491,7 @@
             height: 250px;
             object-fit: cover;
             display: block;
+            object-position: top;
             filter: grayscale(.6);
             transition: filter .3s
         }
@@ -600,8 +601,10 @@
         <div class="wrap">
             <a href="index.html" class="logo"><img src="./src/logo.webp" alt="Pipeworks"></a>
             <nav class="nav" id="nav">
+                <div class="sidetop">
+                       <a href="index.html" class="logo"><img src="./src/logo.webp" alt="Pipeworks"></a>
                 <span class="material-symbols-outlined close-btn" id="closeBtn">close</span>
-                <a href="index.html">Home</a>
+                </div>                <a href="index.html">Home</a>
                 <a href="about.html" class="active">About</a>
                 <a href="service.html">Services</a>
                 <a href="blog.html">Blog</a>
@@ -609,8 +612,11 @@
             </nav>
             <div class="head-actions">
                 <a href="login.html" class="btn btn-main" style="padding:11px 22px">Login</a>
-                <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span
+                 <div class="loginicon">
+                    <a href="login.html"><span class="material-symbols-outlined logicon">person</span></a>
+                    <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span
                         class="material-symbols-outlined">menu</span></button>
+                </div>
             </div>
         </div>
     </header>
@@ -618,7 +624,7 @@
     <main>
         <section class="phero">
             <div class="phero-bg"><img
-                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1600&q=70"
+                    src="./src/how.webp"
                     alt=""></div>
             <div class="wrap">
                 <div class="crumb"><a href="index.html">Home</a><b>/</b><span>About us</span></div>
@@ -649,7 +655,7 @@
                 </div>
                 <div class="pic">
                     <div class="badge"><b>08+</b>Years in production</div>
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
+                    <img src="./src/4.webp"
                         alt="Pipeworks engineers working together">
                 </div>
             </div>
@@ -747,7 +753,7 @@
                 </div>
                 <div class="team-grid">
                     <div class="mem"><img
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=70"
+                            src="./src/team-2.webp"
                             alt="Vikram Anand">
                         <div>
                             <h4>Vikram Anand</h4><span>Founder and CEO</span>
@@ -755,7 +761,7 @@
                         </div>
                     </div>
                     <div class="mem"><img
-                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=70"
+                            src="./src/team-4.webp"
                             alt="Divya Krishnan">
                         <div>
                             <h4>Divya Krishnan</h4><span>Head of SRE</span>
@@ -763,7 +769,7 @@
                         </div>
                     </div>
                     <div class="mem"><img
-                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=70"
+                            src="./src/team-1.webp"
                             alt="Suresh Babu">
                         <div>
                             <h4>Suresh Babu</h4><span>Kubernetes Architect</span>
@@ -771,7 +777,7 @@
                         </div>
                     </div>
                     <div class="mem"><img
-                            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=500&q=70"
+                            src="./src/team-5.webp"
                             alt="Meena Iyer">
                         <div>
                             <h4>Meena Iyer</h4><span>Security and Compliance</span>
@@ -805,7 +811,7 @@
                     <h2>Let's build your platform together</h2>
                     <p>Book a free 30-minute audit and get a written plan for your pipeline, cluster and cloud costs.
                     </p>
-                    <a href="contact.html" class="btn"><span class="material-symbols-outlined">calendar_month</span>Book
+                    <a href="404.html" class="btn"><span class="material-symbols-outlined">calendar_month</span>Book
                         your audit</a>
                 </div>
             </div>
@@ -854,11 +860,11 @@
                 </div>
                 <div class="newcontact">
                     <h3>Talk to us</h3>
-                    <div class="contact-line"><span class="material-symbols-outlined">location_on</span><span>25, Daniel
+                    <div class="contact-line errorpage"><span class="material-symbols-outlined">location_on</span><span>25, Daniel
                             Street, Chennai</span></div>
-                    <div class="contact-line"><span
+                    <div class="contact-line errorpage"><span
                             class="material-symbols-outlined">mail</span><span>hello@pipeworks.dev</span></div>
-                    <div class="contact-line"><span class="material-symbols-outlined">call</span><span>+91 09876
+                    <div class="contact-line errorpage"><span class="material-symbols-outlined">call</span><span>+91 09876
                             54321</span></div>
                 </div>
             </div>
@@ -900,6 +906,14 @@
                 gsap.to(o, { v: t, duration: 2, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 90%", once: true }, onUpdate: () => el.textContent = Math.round(o.v) + suf });
             });
         }
+
+          
+        let errorpage=document.querySelectorAll(".errorpage")
+        errorpage.forEach((err)=>{
+                err.addEventListener("click",()=>{
+                    window.location.href="404.html"
+                })
+        })
     </script>
 </body>
 

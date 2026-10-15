@@ -587,8 +587,10 @@
         <div class="wrap">
             <a href="index.html" class="logo"><img src="./src/logo.webp" alt="Pipeworks"></a>
             <nav class="nav" id="nav">
+               <div class="sidetop">
+                       <a href="index.html" class="logo"><img src="./src/logo.webp" alt="Pipeworks"></a>
                 <span class="material-symbols-outlined close-btn" id="closeBtn">close</span>
-                <a href="index.html">Home</a>
+                </div>                <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="service.html">Services</a>
                 <a href="blog.html" class="active">Blog</a>
@@ -596,8 +598,11 @@
             </nav>
             <div class="head-actions">
                 <a href="login.html" class="btn btn-main" style="padding:11px 22px">Login</a>
-                <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span
+                <div class="loginicon">
+                    <a href="login.html"><span class="material-symbols-outlined logicon">person</span></a>
+                    <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span
                         class="material-symbols-outlined">menu</span></button>
+                </div>
             </div>
         </div>
     </header>
@@ -605,13 +610,13 @@
     <main>
         <section class="phero">
             <div class="phero-bg"><img
-                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=70"
+                    src="./src/image_19.webp"
                     alt=""></div>
             <div class="wrap">
                 <div class="crumb"><a href="index.html">Home</a><b>/</b><span>Blog</span></div>
                 <h1>
-                    <span class="line"><span>Practical DevOps notes</span></span>
-                    <span class="line"><span class="grad">from the engineers on call.</span></span>
+                    <span class="line"><span>Practical notes</span></span>
+                    <span class="line"><span class="grad">from the engineers</span></span>
                 </h1>
                 <p>Guides on pipelines, Kubernetes, cloud costs and security, written by the people who run them in
                     production.</p>
@@ -626,7 +631,7 @@
                 </div>
                 <a href="404.html" class="feat" id="feat">
                     <div class="feat-img"><img
-                            src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1100&q=70"
+                            src="./src/image_27.webp"
                             alt="Developer deploying code"></div>
                     <div class="feat-body">
                         <div class="meta"><span class="cat">CI/CD</span><span>12 Sep 2026</span><span>8 min read</span>
@@ -635,11 +640,11 @@
                         <p>A step-by-step look at replacing manual weekly releases with a pipeline that tests, scans and
                             deploys on every merge, and the mistakes we made on the way.</p>
                         <div class="author"><img
-                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=70"
+                                src="./src/img14.webp"
                                 alt="Vikram Anand">
                             <div><b>Vikram Anand</b><span>Founder and CEO</span></div>
                         </div>
-                        <span class="read">Read article<span
+                        <span class="read errorpage">Read article<span
                                 class="material-symbols-outlined">arrow_forward</span></span>
                     </div>
                 </a>
@@ -662,7 +667,7 @@
                 <div class="blog-grid" id="grid">
                     <a href="404.html" class="post" data-c="k8s">
                         <div class="post-img"><img
-                                src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=700&q=70"
+                                src="./src/image_3.webp"
                                 alt="Kubernetes cluster"></div>
                         <div class="post-body">
                             <div class="meta"><span class="cat">Kubernetes</span><span>5 Sep 2026</span><span>6
@@ -675,7 +680,7 @@
                     </a>
                     <a href="404.html" class="post" data-c="cost">
                         <div class="post-img"><img
-                                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=700&q=70"
+                                src="./src/image_28.webp"
                                 alt="Cost reports"></div>
                         <div class="post-body">
                             <div class="meta"><span class="cat">Cloud cost</span><span>28 Aug 2026</span><span>5
@@ -688,7 +693,7 @@
                     </a>
                     <a href="404.html" class="post" data-c="sec">
                         <div class="post-img"><img
-                                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=700&q=70"
+                                src="./src/image_5.webp"
                                 alt="Security"></div>
                         <div class="post-body">
                             <div class="meta"><span class="cat">Security</span><span>19 Aug 2026</span><span>7
@@ -701,7 +706,7 @@
                     </a>
                     <a href="404.html" class="post" data-c="cicd">
                         <div class="post-img"><img
-                                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=700&q=70"
+                                src="./src/image_6.webp"
                                 alt="Code on screen"></div>
                         <div class="post-body">
                             <div class="meta"><span class="cat">CI/CD</span><span>10 Aug 2026</span><span>6 min</span>
@@ -714,7 +719,7 @@
                     </a>
                     <a href="404.html" class="post" data-c="k8s">
                         <div class="post-img"><img
-                                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=700&q=70"
+                                src="./src/image_7.webp"
                                 alt="Server racks"></div>
                         <div class="post-body">
                             <div class="meta"><span class="cat">Kubernetes</span><span>2 Aug 2026</span><span>9
@@ -727,7 +732,7 @@
                     </a>
                     <a href="404.html" class="post" data-c="sec">
                         <div class="post-img"><img
-                                src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=700&q=70"
+                                src="./src/image_8.webp"
                                 alt="Lock and security"></div>
                         <div class="post-body">
                             <div class="meta"><span class="cat">Security</span><span>24 Jul 2026</span><span>5
@@ -775,7 +780,7 @@
                     <span class="ring r1"></span><span class="ring r2"></span>
                     <h2 data-split>Get one useful DevOps guide a month</h2>
                     <p>No spam. Release notes, new articles and cost-saving tips straight to your inbox.</p>
-                    <a href="#footerEmail" class="btn"><span class="material-symbols-outlined">mail</span>Subscribe
+                    <a href="404.html" class="btn"><span class="material-symbols-outlined">mail</span>Subscribe
                         below</a>
                 </div>
             </div>
@@ -824,11 +829,11 @@
                 </div>
                 <div class="newcontact">
                     <h3>Talk to us</h3>
-                    <div class="contact-line"><span class="material-symbols-outlined">location_on</span><span>25, Daniel
+                    <div class="contact-line errorpage"><span class="material-symbols-outlined">location_on</span><span>25, Daniel
                             Street, Chennai</span></div>
-                    <div class="contact-line"><span
+                    <div class="contact-line errorpage"><span
                             class="material-symbols-outlined">mail</span><span>hello@pipeworks.dev</span></div>
-                    <div class="contact-line"><span class="material-symbols-outlined">call</span><span>+91 09876
+                    <div class="contact-line errorpage"><span class="material-symbols-outlined">call</span><span>+91 09876
                             54321</span></div>
                 </div>
             </div>
@@ -920,6 +925,14 @@
             gsap.from(".footer-top > div", { y: 50, opacity: 0, stagger: .12, duration: .9, ease: "power3.out", scrollTrigger: { trigger: ".footer-top", start: "top 92%" } });
             gsap.from(".footer-bottom", { opacity: 0, y: 20, duration: .8, scrollTrigger: { trigger: ".footer-bottom", start: "top 100%" } });
         }
+
+          
+        let errorpage=document.querySelectorAll(".errorpage")
+        errorpage.forEach((err)=>{
+                err.addEventListener("click",()=>{
+                    window.location.href="404.html"
+                })
+        })
     </script>
 </body>
 

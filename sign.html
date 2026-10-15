@@ -1,391 +1,931 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign Up - Pipeworks DevOps Services</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-<style>
-:root{--bg:#120a2b;--panel:#1c1240;--panel2:#251856;--line:#3a2a73;--violet:#8b5cf6;--violet2:#6d3df0;--sun:#ffd23f;--text:#efeaff;--muted:#a79ccf;--red:#ff7b8a;--green:#7ee787}
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{overflow-x:hidden}
-body{font-family:"Sora",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.5}
-h1,h2{line-height:1.1}
-a{text-decoration:none;color:inherit}
-img{display:block;max-width:100%}
-:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
-.mono{font-family:"JetBrains Mono",monospace}
-.material-symbols-outlined{font-size:22px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Pipeworks DevOps Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <style>
+    :root {
+      --bg: #120a2b;
+      --panel: #1c1240;
+      --panel2: #251856;
+      --line: #3a2a73;
+      --violet: #8b5cf6;
+      --violet2: #6d3df0;
+      --sun: #ffd23f;
+      --text: #efeaff;
+      --muted: #a79ccf;
+      --red: #ff7b8a;
+      --green: #7ee787
+    }
 
-.split{display:grid;grid-template-columns:1fr 1.1fr;min-height:100vh}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
 
-/* left: brand side */
-.brand{position:relative;padding:34px clamp(24px,5vw,70px);display:flex;flex-direction:column;justify-content:space-between;gap:34px;overflow:hidden;background:radial-gradient(circle at 20% 0,rgba(139,92,246,.35),transparent 55%),var(--bg)}
-.brand::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.16;pointer-events:none}
-.brand>*{position:relative;z-index:1}
-.logo img{width:150px;height:auto}
-.hero h1{font-size:clamp(38px,5vw,68px);font-weight:800;letter-spacing:-2.5px;margin-bottom:20px}
-.grad{background:linear-gradient(90deg,var(--violet),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero>p{color:#c9bfee;font-size:17px;line-height:1.7;max-width:480px;margin-bottom:30px}
-.points{display:grid;gap:14px;margin-bottom:30px}
-.points div{display:flex;align-items:center;gap:14px;font-weight:600;font-size:15px}
-.points .material-symbols-outlined{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;background:var(--panel);border:1px solid var(--line);color:var(--sun);font-size:22px;flex-shrink:0}
-.mini{display:flex;gap:14px;flex-wrap:wrap}
-.mini div{background:rgba(28,18,64,.8);border:1px solid var(--line);border-radius:16px;padding:14px 20px;min-width:120px}
-.mini b{display:block;font-size:26px;font-weight:800}
-.mini span{font-size:12px;color:var(--muted)}
-.review{display:flex;align-items:center;gap:14px;background:rgba(28,18,64,.8);border:1px solid var(--line);border-radius:18px;padding:14px 18px;max-width:500px}
-.review img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid var(--sun);flex-shrink:0}
-.review p{font-size:13.5px;line-height:1.55;color:#d9d0f5}
-.review b{display:block;font-size:12.5px;margin-top:3px;color:#fff}
+    html,
+    body {
+      overflow-x: hidden
+    }
 
-/* right: form side */
-.formside{background:var(--panel);display:flex;flex-direction:column;border-left:1px solid var(--line)}
-.top{display:flex;justify-content:flex-end;padding:26px clamp(20px,4vw,50px) 0}
-.back{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:14px;padding:9px 18px;border-radius:999px;border:1px solid var(--line);color:var(--muted);transition:.25s}
-.back:hover{border-color:var(--sun);color:var(--sun)}
-.back .material-symbols-outlined{font-size:18px}
-.formwrap{flex:1;display:flex;align-items:center;justify-content:center;padding:24px clamp(20px,4vw,50px) 50px}
-.box{width:100%;max-width:500px}
-.box h2{font-size:34px;font-weight:800;letter-spacing:-1px;margin-bottom:8px}
-.box .sub{color:var(--muted);font-size:15px;margin-bottom:24px;line-height:1.6}
+    body {
+      font-family: "Sora", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5
+    }
 
-.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:5px;margin-bottom:24px}
-.seg button{display:flex;align-items:center;justify-content:center;gap:8px;border:none;background:transparent;color:var(--muted);font:700 14px Sora,sans-serif;padding:12px;border-radius:10px;cursor:pointer;transition:.25s}
-.seg button.active{background:var(--violet);color:#fff}
-.seg .material-symbols-outlined{font-size:19px}
+    h1,
+    h2 {
+      line-height: 1.1
+    }
 
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.field{margin-bottom:16px;min-width:0}
-.field label{display:block;font-size:13px;font-weight:600;margin-bottom:8px}
-.input{display:flex;align-items:center;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;transition:border-color .25s,box-shadow .25s}
-.input:focus-within{border-color:var(--sun);box-shadow:0 0 0 4px rgba(255,210,63,.15)}
-.input.err{border-color:var(--red)}
-.input>.material-symbols-outlined{padding-left:14px;color:var(--muted);font-size:21px}
-.input input{flex:1;min-width:0;border:none;outline:none;background:transparent;color:#fff;font:500 15px Sora,sans-serif;padding:14px 14px 14px 10px}
-.input input::placeholder{color:#6f6498}
-.passeye{padding:0 14px;cursor:pointer;color:var(--muted);user-select:none}
-.passeye:hover{color:var(--sun)}
-.field-error{color:var(--red);font-size:13px;margin-top:6px}
+    a {
+      text-decoration: none;
+      color: inherit
+    }
 
-.strength{display:flex;gap:6px;margin-top:8px}
-.strength i{flex:1;height:4px;border-radius:4px;background:var(--line);transition:background .3s}
-.strength-txt{font-size:12px;color:var(--muted);margin-top:5px}
+    img {
+      display: block;
+      max-width: 100%
+    }
 
-.terms{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted);line-height:1.5;margin:4px 0 22px;cursor:pointer}
-.terms input{accent-color:var(--violet);width:17px;height:17px;margin-top:2px;flex-shrink:0}
-.terms a{color:var(--sun);font-weight:700}
-.terms a:hover{text-decoration:underline}
-.terms.err{color:var(--red)}
+    :focus-visible {
+      outline: 3px solid var(--sun);
+      outline-offset: 3px
+    }
 
-.submit{width:100%;padding:16px;border:none;border-radius:999px;background:var(--violet);color:#fff;font:700 16px Sora,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .25s,box-shadow .25s,background .25s}
-.submit:hover{transform:translateY(-3px);background:var(--violet2);box-shadow:0 14px 28px rgba(109,61,240,.45)}
-.submit .material-symbols-outlined{transition:transform .25s}
-.submit:hover .material-symbols-outlined{transform:translateX(5px)}
+    .mono {
+      font-family: "JetBrains Mono", monospace
+    }
 
-.or{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:13px;margin:20px 0 16px}
-.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
-.social{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
-.social a{display:grid;place-items:center;padding:13px;border-radius:12px;background:var(--bg);border:1px solid var(--line);font-size:18px;transition:.25s}
-.social a:hover{border-color:var(--sun);color:var(--sun);transform:translateY(-3px)}
-.foot{text-align:center;color:var(--muted);font-size:14.5px}
-.foot a{color:#fff;font-weight:700;border-bottom:2px solid var(--sun)}
-.foot a:hover{color:var(--sun)}
+    .material-symbols-outlined {
+      font-size: 22px
+    }
 
-/* popup */
-.popup{position:fixed;inset:0;background:rgba(10,5,28,.75);backdrop-filter:blur(4px);display:none;justify-content:center;align-items:center;z-index:9999;padding:20px}
-.popup.active{display:flex}
-.popup-box{width:360px;max-width:100%;background:var(--panel);border:1px solid var(--line);border-radius:26px;padding:34px;text-align:center;box-shadow:0 30px 70px rgba(0,0,0,.5)}
-.ok-icon{width:62px;height:62px;border-radius:50%;background:rgba(126,231,135,.14);color:var(--green);display:grid;place-items:center;font-size:34px;margin:0 auto 16px}
-.popup-box h2{font-size:24px;margin-bottom:8px}
-.popup-box p{color:var(--muted);margin-bottom:22px;font-size:15px;line-height:1.6}
-.popup-box button{padding:13px 44px;border:none;background:var(--sun);color:#1b1340;font:700 15px Sora,sans-serif;border-radius:999px;cursor:pointer}
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      min-height: 100vh
+    }
 
-input[type="password"]::-ms-reveal{display:none}
+    /* left: brand side */
+    .brand {
+      position: relative;
+      padding: 34px clamp(24px, 5vw, 70px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 34px;
+      overflow: hidden;
+      background: radial-gradient(circle at 20% 0, rgba(139, 92, 246, .35), transparent 55%), var(--bg)
+    }
 
-@media(max-width:960px){
-  .split{grid-template-columns:1fr}
-  .brand{padding-bottom:36px}
-  .hero>p,.points,.mini,.review{display:none}
-  .hero h1{font-size:clamp(36px,10vw,54px);margin-bottom:0}
-  .formside{border-left:0;border-top:1px solid var(--line)}
-}
-@media(max-width:560px){.pair{grid-template-columns:1fr;gap:0}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
+    .brand::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 56px 56px;
+      opacity: .16;
+      pointer-events: none
+    }
+
+    .brand>* {
+      position: relative;
+      z-index: 1
+    }
+
+    .logo img {
+      width: 150px;
+      height: auto
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 68px);
+      font-weight: 800;
+      letter-spacing: -2.5px;
+      margin-bottom: 20px
+    }
+
+    .grad {
+      background: linear-gradient(90deg, var(--violet), var(--sun));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent
+    }
+
+    .hero>p {
+      color: #c9bfee;
+      font-size: 17px;
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 30px
+    }
+
+    .points {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 30px
+    }
+
+    .points div {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 600;
+      font-size: 15px
+    }
+
+    .points .material-symbols-outlined {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      color: var(--sun);
+      font-size: 22px;
+      flex-shrink: 0
+    }
+
+    .mini {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap
+    }
+
+    .mini div {
+      background: rgba(28, 18, 64, .8);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 20px;
+      min-width: 120px
+    }
+
+    .mini b {
+      display: block;
+      font-size: 26px;
+      font-weight: 800
+    }
+
+    .mini span {
+      font-size: 12px;
+      color: var(--muted)
+    }
+
+    .review {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(28, 18, 64, .8);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 18px;
+      max-width: 500px
+    }
+
+    .review img {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--sun);
+      flex-shrink: 0
+    }
+
+    .review p {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #d9d0f5
+    }
+
+    .review b {
+      display: block;
+      font-size: 12.5px;
+      margin-top: 3px;
+      color: #fff
+    }
+
+    /* right: form side */
+    .formside {
+      background: var(--panel);
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--line)
+    }
+
+    .top {
+      display: flex;
+      justify-content: flex-end;
+      padding: 26px clamp(20px, 4vw, 50px) 0
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      transition: .25s
+    }
+
+    .back:hover {
+      border-color: var(--sun);
+      color: var(--sun)
+    }
+
+    .back .material-symbols-outlined {
+      font-size: 18px
+    }
+
+    .formwrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px clamp(20px, 4vw, 50px) 50px
+    }
+
+    .box {
+      width: 100%;
+      max-width: 500px
+    }
+
+    .box h2 {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 8px
+    }
+
+    .box .sub {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 24px;
+      line-height: 1.6
+    }
+
+    .seg {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 5px;
+      margin-bottom: 24px
+    }
+
+    .seg button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font: 700 14px Sora, sans-serif;
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: .25s
+    }
+
+    .seg button.active {
+      background: var(--violet);
+      color: #fff
+    }
+
+    .seg .material-symbols-outlined {
+      font-size: 19px
+    }
+
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px
+    }
+
+    .field {
+      margin-bottom: 16px;
+      min-width: 0
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px
+    }
+
+    .input {
+      display: flex;
+      align-items: center;
+      background: var(--bg);
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      transition: border-color .25s, box-shadow .25s
+    }
+
+    .input:focus-within {
+      border-color: var(--sun);
+      box-shadow: 0 0 0 4px rgba(255, 210, 63, .15)
+    }
+
+    .input.err {
+      border-color: var(--red)
+    }
+
+    .input>.material-symbols-outlined {
+      padding-left: 14px;
+      color: var(--muted);
+      font-size: 21px
+    }
+
+    .input input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #fff;
+      font: 500 15px Sora, sans-serif;
+      padding: 14px 14px 14px 10px
+    }
+
+    .input input::placeholder {
+      color: #6f6498
+    }
+
+    .passeye {
+      padding: 0 14px;
+      cursor: pointer;
+      color: var(--muted);
+      user-select: none
+    }
+
+    .passeye:hover {
+      color: var(--sun)
+    }
+
+    .field-error {
+      color: var(--red);
+      font-size: 13px;
+      margin-top: 6px
+    }
+
+    .strength {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px
+    }
+
+    .strength i {
+      flex: 1;
+      height: 4px;
+      border-radius: 4px;
+      background: var(--line);
+      transition: background .3s
+    }
+
+    .strength-txt {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 5px
+    }
+
+    .terms {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 4px 0 22px;
+      cursor: pointer
+    }
+
+    .terms input {
+      accent-color: var(--violet);
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      flex-shrink: 0
+    }
+
+    .terms a {
+      color: var(--sun);
+      font-weight: 700
+    }
+
+    .terms a:hover {
+      text-decoration: underline
+    }
+
+    .terms.err {
+      color: var(--red)
+    }
+
+    .submit {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 999px;
+      background: var(--violet);
+      color: #fff;
+      font: 700 16px Sora, sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform .25s, box-shadow .25s, background .25s
+    }
+
+    .submit:hover {
+      transform: translateY(-3px);
+      background: var(--violet2);
+      box-shadow: 0 14px 28px rgba(109, 61, 240, .45)
+    }
+
+    .submit .material-symbols-outlined {
+      transition: transform .25s
+    }
+
+    .submit:hover .material-symbols-outlined {
+      transform: translateX(5px)
+    }
+
+    .or {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-block: 20px;
+      margin-top: 50px;
+    }
+
+    .or::before,
+    .or::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line)
+    }
+
+    .social {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 22px
+    }
+
+    .social a {
+      display: grid;
+      place-items: center;
+      padding: 13px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      font-size: 18px;
+      transition: .25s
+    }
+
+    .social a:hover {
+      border-color: var(--sun);
+      color: var(--sun);
+      transform: translateY(-3px)
+    }
+
+    .foot {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14.5px
+    }
+
+    .foot a {
+      color: #fff;
+      font-weight: 700;
+      border-bottom: 2px solid var(--sun)
+    }
+
+    .foot a:hover {
+      color: var(--sun)
+    }
+
+    /* popup */
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 5, 28, .75);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 20px
+    }
+
+    .popup.active {
+      display: flex
+    }
+
+    .popup-box {
+      width: 360px;
+      max-width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 34px;
+      text-align: center;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, .5)
+    }
+
+    .ok-icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: rgba(126, 231, 135, .14);
+      color: var(--green);
+      display: grid;
+      place-items: center;
+      font-size: 34px;
+      margin: 0 auto 16px
+    }
+
+    .popup-box h2 {
+      font-size: 24px;
+      margin-bottom: 8px
+    }
+
+    .popup-box p {
+      color: var(--muted);
+      margin-bottom: 22px;
+      font-size: 15px;
+      line-height: 1.6
+    }
+
+    .popup-box button {
+      padding: 13px 44px;
+      border: none;
+      background: var(--sun);
+      color: #1b1340;
+      font: 700 15px Sora, sans-serif;
+      border-radius: 999px;
+      cursor: pointer
+    }
+
+    input[type="password"]::-ms-reveal {
+      display: none
+    }
+
+    @media(max-width:960px) {
+      .split {
+        grid-template-columns: 1fr
+      }
+
+      .brand {
+        padding-bottom: 36px
+      }
+
+      .hero>p,
+      .points,
+      .mini,
+      .review {
+        display: none
+      }
+
+      .hero h1 {
+        font-size: clamp(36px, 10vw, 54px);
+        margin-bottom: 0
+      }
+
+      .formside {
+        border-left: 0;
+        border-top: 1px solid var(--line)
+      }
+    }
+
+    @media(max-width:560px) {
+      .pair {
+        grid-template-columns: 1fr;
+        gap: 0
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        transition: none !important
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="popup" id="popup" role="dialog" aria-modal="true" aria-labelledby="popTitle">
-  <div class="popup-box">
-    <span class="material-symbols-outlined ok-icon">check_circle</span>
-    <h2 id="popTitle">You're all set</h2>
-    <p>Your account has been created. Click OK to log in.</p>
-    <button id="okBtn">OK</button>
+  <div class="popup" id="popup" role="dialog" aria-modal="true" aria-labelledby="popTitle">
+    <div class="popup-box">
+      <span class="material-symbols-outlined ok-icon">check_circle</span>
+      <h2 id="popTitle">You're all set</h2>
+      <p>Your account has been created. Click OK to log in.</p>
+      <button id="okBtn">OK</button>
+    </div>
   </div>
-</div>
 
-<div class="split">
-  <section class="brand">
-    <a href="index.html" class="logo"><img src="./src/logo.webp" alt="Pipeworks logo"></a>
-    <div class="hero">
-      <h1>Start building your <span class="grad">platform today.</span></h1>
-      <p>Create your account to book a free audit, track your pipelines and see every cloud saving in one dashboard.</p>
-      <div class="points">
-        <div><span class="material-symbols-outlined">fact_check</span>Free 30-minute DevOps audit</div>
-        <div><span class="material-symbols-outlined">support_agent</span>24/7 on-call engineers, 15-minute response</div>
-        <div><span class="material-symbols-outlined">savings</span>Up to 40% lower cloud bill</div>
+  <div class="split">
+    <section class="brand">
+      <a href="index.html" class="logo"><img src="./src/logo.webp" alt="Pipeworks logo"></a>
+      <div class="hero">
+        <h1>Start building your <span class="grad">platform today.</span></h1>
+        <p>Create your account to book a free audit, track your pipelines and see every cloud saving in one dashboard.
+        </p>
+        <div class="points">
+          <div><span class="material-symbols-outlined">fact_check</span>Free 30-minute DevOps audit</div>
+          <div><span class="material-symbols-outlined">support_agent</span>24/7 on-call engineers, 15-minute response
+          </div>
+          <div><span class="material-symbols-outlined">savings</span>Up to 40% lower cloud bill</div>
+        </div>
+        <div class="mini">
+          <div><b>120+</b><span>Happy clients</span></div>
+          <div><b>99.99%</b><span>Average uptime</span></div>
+          <div><b>350+</b><span>Pipelines built</span></div>
+        </div>
       </div>
-      <div class="mini">
-        <div><b>120+</b><span>Happy clients</span></div>
-        <div><b>99.99%</b><span>Average uptime</span></div>
-        <div><b>350+</b><span>Pipelines built</span></div>
+      <div class="review">
+        <img id="rev" src="./src/img21.webp" alt="Priya Raman">
+        <p>"They cut our cloud bill by almost 40 percent and explained every change."<b>Priya Raman, VP Engineering at
+            Cartly</b></p>
       </div>
-    </div>
-    <div class="review">
-      <img id="rev" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=70" alt="Priya Raman">
-      <p>"They cut our cloud bill by almost 40 percent and explained every change."<b>Priya Raman, VP Engineering at Cartly</b></p>
-    </div>
-  </section>
+    </section>
 
-  <section class="formside">
-    <div class="top"><a href="index.html" class="back"><span class="material-symbols-outlined">arrow_back</span>Home</a></div>
-    <div class="formwrap">
-      <div class="box" id="box">
-        <h2>Create account</h2>
-        <p class="sub">Choose your account type and fill in your details.</p>
+    <section class="formside">
+      <div class="top"><a href="index.html" class="back"><span
+            class="material-symbols-outlined">arrow_back</span>Home</a></div>
+      <div class="formwrap">
+        <div class="box" id="box">
+          <h2>Create account</h2>
+          <p class="sub">Choose your account type and fill in your details.</p>
 
-        <div class="seg" role="tablist">
-          <button class="active" data-role="admin" role="tab" aria-selected="true"><span class="material-symbols-outlined">admin_panel_settings</span>Admin</button>
-          <button data-role="client" role="tab" aria-selected="false"><span class="material-symbols-outlined">business_center</span>Client</button>
-        </div>
+          <div class="seg" role="tablist">
+            <button class="active" data-role="admin" role="tab" aria-selected="true"><span
+                class="material-symbols-outlined">admin_panel_settings</span>Admin</button>
+            <button data-role="client" role="tab" aria-selected="false"><span
+                class="material-symbols-outlined">business_center</span>Client</button>
+          </div>
 
-        <div class="pair">
+          <div class="pair">
+            <div class="field">
+              <label for="log-name">Full name</label>
+              <div class="input"><span class="material-symbols-outlined">person</span><input type="text" id="log-name"
+                  placeholder="Your name" autocomplete="name"></div>
+              <p class="field-error"></p>
+            </div>
+            <div class="field">
+              <label for="log-phone">Phone number</label>
+              <div class="input"><span class="material-symbols-outlined">call</span><input type="tel" id="log-phone"
+                  placeholder="+91" autocomplete="tel"></div>
+              <p class="field-error"></p>
+            </div>
+          </div>
+
+          <div class="pair">
+            <div class="field">
+              <label for="log-email">Work email</label>
+              <div class="input"><span class="material-symbols-outlined">mail</span><input type="email" id="log-email"
+                  placeholder="you@company.com" autocomplete="email"></div>
+              <p class="field-error"></p>
+            </div>
+            <div class="field">
+              <label for="log-company">Company name</label>
+              <div class="input"><span class="material-symbols-outlined">apartment</span><input type="text"
+                  id="log-company" placeholder="Your company" autocomplete="organization"></div>
+              <p class="field-error"></p>
+            </div>
+          </div>
+
           <div class="field">
-            <label for="log-name">Full name</label>
-            <div class="input"><span class="material-symbols-outlined">person</span><input type="text" id="log-name" placeholder="Your name" autocomplete="name"></div>
+            <label for="log-pass">Create a password</label>
+            <div class="input"><span class="material-symbols-outlined">lock</span><input type="password" id="log-pass"
+                placeholder="At least 6 characters" autocomplete="new-password"><span
+                class="passeye material-symbols-outlined" role="button" aria-label="Show password">visibility_off</span>
+            </div>
+            <div class="strength" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <p class="strength-txt" id="strengthTxt"></p>
             <p class="field-error"></p>
           </div>
+
           <div class="field">
-            <label for="log-phone">Phone number</label>
-            <div class="input"><span class="material-symbols-outlined">call</span><input type="tel" id="log-phone" placeholder="+91" autocomplete="tel"></div>
+            <label for="log-conpass">Confirm password</label>
+            <div class="input"><span class="material-symbols-outlined">lock</span><input type="password"
+                id="log-conpass" placeholder="Re-enter your password" autocomplete="new-password"><span
+                class="passeye material-symbols-outlined" role="button" aria-label="Show password">visibility_off</span>
+            </div>
             <p class="field-error"></p>
           </div>
-        </div>
 
-        <div class="pair">
-          <div class="field">
-            <label for="log-email">Work email</label>
-            <div class="input"><span class="material-symbols-outlined">mail</span><input type="email" id="log-email" placeholder="you@company.com" autocomplete="email"></div>
-            <p class="field-error"></p>
+          <label class="terms" id="termsBox">
+            <input type="checkbox" id="log-terms">
+            <span>I agree to the <a href="404.html">Terms and Conditions</a> and <a href="404.html">Privacy
+                Policy</a></span>
+          </label>
+
+          <button class="submit" id="signBtn">Create account<span
+              class="material-symbols-outlined">arrow_forward</span></button>
+
+          <div class="or">or sign up with</div>
+          <div class="social">
+            <a href="404.html" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="404.html" aria-label="Google"><i class="fa-brands fa-google"></i></a>
+            <a href="404.html" aria-label="Microsoft"><i class="fa-brands fa-microsoft"></i></a>
           </div>
-          <div class="field">
-            <label for="log-company">Company name</label>
-            <div class="input"><span class="material-symbols-outlined">apartment</span><input type="text" id="log-company" placeholder="Your company" autocomplete="organization"></div>
-            <p class="field-error"></p>
-          </div>
+
+          <p class="foot">Already have an account? <a href="login.html">Log in</a></p>
         </div>
-
-        <div class="field">
-          <label for="log-pass">Create a password</label>
-          <div class="input"><span class="material-symbols-outlined">lock</span><input type="password" id="log-pass" placeholder="At least 6 characters" autocomplete="new-password"><span class="passeye material-symbols-outlined" role="button" aria-label="Show password">visibility_off</span></div>
-          <div class="strength" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-          <p class="strength-txt" id="strengthTxt"></p>
-          <p class="field-error"></p>
-        </div>
-
-        <div class="field">
-          <label for="log-conpass">Confirm password</label>
-          <div class="input"><span class="material-symbols-outlined">lock</span><input type="password" id="log-conpass" placeholder="Re-enter your password" autocomplete="new-password"><span class="passeye material-symbols-outlined" role="button" aria-label="Show password">visibility_off</span></div>
-          <p class="field-error"></p>
-        </div>
-
-        <label class="terms" id="termsBox">
-          <input type="checkbox" id="log-terms">
-          <span>I agree to the <a href="404.html">Terms and Conditions</a> and <a href="404.html">Privacy Policy</a></span>
-        </label>
-
-        <button class="submit" id="signBtn">Create account<span class="material-symbols-outlined">arrow_forward</span></button>
-
-        <div class="or">or sign up with</div>
-        <div class="social">
-          <a href="404.html" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-          <a href="404.html" aria-label="Google"><i class="fa-brands fa-google"></i></a>
-          <a href="404.html" aria-label="Microsoft"><i class="fa-brands fa-microsoft"></i></a>
-        </div>
-
-        <p class="foot">Already have an account? <a href="login.html">Log in</a></p>
       </div>
-    </div>
-  </section>
-</div>
+    </section>
+  </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script>
-const $ = s => document.querySelector(s);
-const nameInput = $("#log-name"), phoneInput = $("#log-phone"), email = $("#log-email"), company = $("#log-company");
-const password = $("#log-pass"), confirmPassword = $("#log-conpass");
-const termsCheck = $("#log-terms"), termsBox = $("#termsBox");
-const signBtn = $("#signBtn"), popup = $("#popup"), okBtn = $("#okBtn");
-const roleTabs = document.querySelectorAll(".seg button");
-const eyeIcons = document.querySelectorAll(".passeye");
-const errorMsgs = document.querySelectorAll(".field-error");
-const inputBoxes = document.querySelectorAll(".input");
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    const $ = s => document.querySelector(s);
+    const nameInput = $("#log-name"), phoneInput = $("#log-phone"), email = $("#log-email"), company = $("#log-company");
+    const password = $("#log-pass"), confirmPassword = $("#log-conpass");
+    const termsCheck = $("#log-terms"), termsBox = $("#termsBox");
+    const signBtn = $("#signBtn"), popup = $("#popup"), okBtn = $("#okBtn");
+    const roleTabs = document.querySelectorAll(".seg button");
+    const eyeIcons = document.querySelectorAll(".passeye");
+    const errorMsgs = document.querySelectorAll(".field-error");
+    const inputBoxes = document.querySelectorAll(".input");
 
 
-function resetSignupPage() {
-    popup.classList.remove("active");
+    function resetSignupPage() {
+      popup.classList.remove("active");
 
-    // Clear all input fields
-    [
+      // Clear all input fields
+      [
         nameInput,
         phoneInput,
         email,
         company,
         password,
         confirmPassword
-    ].forEach(input => {
+      ].forEach(input => {
         input.value = "";
-    });
+      });
 
-    // Reset terms checkbox
-    termsCheck.checked = false;
-    termsBox.classList.remove("err");
+      // Reset terms checkbox
+      termsCheck.checked = false;
+      termsBox.classList.remove("err");
 
-    // Clear validation errors
-    errorMsgs.forEach(error => {
+      // Clear validation errors
+      errorMsgs.forEach(error => {
         error.textContent = "";
-    });
+      });
 
-    inputBoxes.forEach(box => {
+      inputBoxes.forEach(box => {
         box.classList.remove("err");
-    });
+      });
 
-    // Reset password strength meter
-    bars.forEach(bar => {
+      // Reset password strength meter
+      bars.forEach(bar => {
         bar.style.background = "";
-    });
+      });
 
-    sTxt.textContent = "";
+      sTxt.textContent = "";
 
-    // Reset password visibility icons
-    eyeIcons.forEach(eye => {
+      // Reset password visibility icons
+      eyeIcons.forEach(eye => {
         eye.textContent = "visibility_off";
         eye.setAttribute("aria-label", "Show password");
-    });
+      });
 
-    password.type = "password";
-    confirmPassword.type = "password";
+      password.type = "password";
+      confirmPassword.type = "password";
 
-    // Reset selected role
-    selectedRole = "admin";
+      // Reset selected role
+      selectedRole = "admin";
 
-    roleTabs.forEach(tab => {
+      roleTabs.forEach(tab => {
         const isAdmin = tab.dataset.role === "admin";
 
         tab.classList.toggle("active", isAdmin);
         tab.setAttribute(
-            "aria-selected",
-            String(isAdmin)
+          "aria-selected",
+          String(isAdmin)
         );
+      });
+    }
+
+    window.addEventListener("pagehide", resetSignupPage);
+    window.addEventListener("pageshow", resetSignupPage);
+
+
+    let selectedRole = "admin";
+    roleTabs.forEach(tab => tab.addEventListener("click", () => {
+      roleTabs.forEach(t => { t.classList.remove("active"); t.setAttribute("aria-selected", "false"); });
+      tab.classList.add("active"); tab.setAttribute("aria-selected", "true");
+      selectedRole = tab.dataset.role;
+    }));
+
+    eyeIcons.forEach((eye, index) => eye.addEventListener("click", () => {
+      const input = index === 0 ? password : confirmPassword;
+      const show = input.type === "password";
+      input.type = show ? "text" : "password";
+      eye.textContent = show ? "visibility" : "visibility_off";
+      eye.setAttribute("aria-label", show ? "Hide password" : "Show password");
+    }));
+
+    nameInput.addEventListener("input", () => { nameInput.value = nameInput.value.replace(/[^A-Za-z\s]/g, ""); });
+    phoneInput.addEventListener("input", () => { phoneInput.value = phoneInput.value.replace(/[^0-9+\s]/g, ""); });
+
+    // password strength meter
+    const bars = document.querySelectorAll(".strength i"), sTxt = $("#strengthTxt");
+    password.addEventListener("input", () => {
+      const v = password.value;
+      let s = 0;
+      if (v.length >= 6) s++;
+      if (v.length >= 10) s++;
+      if (/[A-Z]/.test(v) && /[a-z]/.test(v)) s++;
+      if (/\d/.test(v) && /[^A-Za-z0-9]/.test(v)) s++;
+      const colors = ["#ff7b8a", "#ffb04a", "#ffd23f", "#7ee787"], labels = ["Weak", "Fair", "Good", "Strong"];
+      bars.forEach((b, i) => b.style.background = v && i < s ? colors[s - 1] : "");
+      sTxt.textContent = v ? labels[Math.max(s - 1, 0)] + " password" : "";
     });
-}
 
-window.addEventListener("pagehide", resetSignupPage);
-window.addEventListener("pageshow", resetSignupPage);
+    // error order: 0 name, 1 phone, 2 email, 3 company, 4 password, 5 confirm
+    function setError(i, msg) { errorMsgs[i].textContent = msg; inputBoxes[i].classList.add("err"); }
 
+    function signup() {
+      let valid = true;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/, nameRegex = /^[A-Za-z\s]+$/, phoneRegex = /^[0-9+\s]{7,15}$/;
+      const fn = nameInput.value.trim(), fph = phoneInput.value.trim(), fe = email.value.trim(), fc = company.value.trim(), fp = password.value.trim(), fcp = confirmPassword.value.trim();
 
-let selectedRole = "admin";
-roleTabs.forEach(tab => tab.addEventListener("click", () => {
-  roleTabs.forEach(t => { t.classList.remove("active"); t.setAttribute("aria-selected", "false"); });
-  tab.classList.add("active"); tab.setAttribute("aria-selected", "true");
-  selectedRole = tab.dataset.role;
-}));
+      errorMsgs.forEach(e => e.textContent = "");
+      inputBoxes.forEach(b => b.classList.remove("err"));
 
-eyeIcons.forEach((eye, index) => eye.addEventListener("click", () => {
-  const input = index === 0 ? password : confirmPassword;
-  const show = input.type === "password";
-  input.type = show ? "text" : "password";
-  eye.textContent = show ? "visibility" : "visibility_off";
-  eye.setAttribute("aria-label", show ? "Hide password" : "Show password");
-}));
+      if (fn === "") { setError(0, "Please enter your name"); valid = false; }
+      else if (!nameRegex.test(fn)) { setError(0, "Only letters are allowed"); valid = false; }
 
-nameInput.addEventListener("input", () => { nameInput.value = nameInput.value.replace(/[^A-Za-z\s]/g, ""); });
-phoneInput.addEventListener("input", () => { phoneInput.value = phoneInput.value.replace(/[^0-9+\s]/g, ""); });
+      if (fph === "") { setError(1, "Please enter your phone number"); valid = false; }
+      else if (!phoneRegex.test(fph)) { setError(1, "Enter a valid phone number"); valid = false; }
 
-// password strength meter
-const bars = document.querySelectorAll(".strength i"), sTxt = $("#strengthTxt");
-password.addEventListener("input", () => {
-  const v = password.value;
-  let s = 0;
-  if (v.length >= 6) s++;
-  if (v.length >= 10) s++;
-  if (/[A-Z]/.test(v) && /[a-z]/.test(v)) s++;
-  if (/\d/.test(v) && /[^A-Za-z0-9]/.test(v)) s++;
-  const colors = ["#ff7b8a", "#ffb04a", "#ffd23f", "#7ee787"], labels = ["Weak", "Fair", "Good", "Strong"];
-  bars.forEach((b, i) => b.style.background = v && i < s ? colors[s - 1] : "");
-  sTxt.textContent = v ? labels[Math.max(s - 1, 0)] + " password" : "";
-});
+      if (fe === "") { setError(2, "Please enter your email"); valid = false; }
+      else if (!emailRegex.test(fe)) { setError(2, "Please enter a valid email"); valid = false; }
 
-// error order: 0 name, 1 phone, 2 email, 3 company, 4 password, 5 confirm
-function setError(i, msg) { errorMsgs[i].textContent = msg; inputBoxes[i].classList.add("err"); }
+      if (fc === "") { setError(3, "Please enter your company"); valid = false; }
+      else if (fc.length < 2) { setError(3, "Company name is too short"); valid = false; }
 
-function signup() {
-  let valid = true;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/, nameRegex = /^[A-Za-z\s]+$/, phoneRegex = /^[0-9+\s]{7,15}$/;
-  const fn = nameInput.value.trim(), fph = phoneInput.value.trim(), fe = email.value.trim(), fc = company.value.trim(), fp = password.value.trim(), fcp = confirmPassword.value.trim();
+      if (fp === "") { setError(4, "Please enter a password"); valid = false; }
+      else if (fp.length < 6) { setError(4, "Password must be at least 6 characters"); valid = false; }
 
-  errorMsgs.forEach(e => e.textContent = "");
-  inputBoxes.forEach(b => b.classList.remove("err"));
+      if (fcp === "") { setError(5, "Please confirm your password"); valid = false; }
+      else if (fp !== fcp) { setError(5, "Passwords do not match"); valid = false; }
 
-  if (fn === "") { setError(0, "Please enter your name"); valid = false; }
-  else if (!nameRegex.test(fn)) { setError(0, "Only letters are allowed"); valid = false; }
+      termsBox.classList.toggle("err", !termsCheck.checked);
+      if (!termsCheck.checked) valid = false;
 
-  if (fph === "") { setError(1, "Please enter your phone number"); valid = false; }
-  else if (!phoneRegex.test(fph)) { setError(1, "Enter a valid phone number"); valid = false; }
+      if (valid) {
+        try { localStorage.setItem("useremail", email.value); } catch (e) { }
+        popup.classList.add("active");
+        okBtn.focus();
+      } else if (typeof gsap !== "undefined") {
+        gsap.fromTo("#box", { x: -8 }, { x: 0, duration: .5, ease: "elastic.out(1,.3)" });
+      }
+    }
+    signBtn.addEventListener("click", signup);
+    okBtn.addEventListener("click", () => { window.location.href = "login.html"; });
+    termsCheck.addEventListener("change", () => termsBox.classList.remove("err"));
+    document.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.tagName === "INPUT" && e.target.type !== "checkbox") signup(); });
 
-  if (fe === "") { setError(2, "Please enter your email"); valid = false; }
-  else if (!emailRegex.test(fe)) { setError(2, "Please enter a valid email"); valid = false; }
+    // fallback for broken avatar image
+    $("#rev").addEventListener("error", function () { this.style.display = "none"; }, { once: true });
 
-  if (fc === "") { setError(3, "Please enter your company"); valid = false; }
-  else if (fc.length < 2) { setError(3, "Company name is too short"); valid = false; }
-
-  if (fp === "") { setError(4, "Please enter a password"); valid = false; }
-  else if (fp.length < 6) { setError(4, "Password must be at least 6 characters"); valid = false; }
-
-  if (fcp === "") { setError(5, "Please confirm your password"); valid = false; }
-  else if (fp !== fcp) { setError(5, "Passwords do not match"); valid = false; }
-
-  termsBox.classList.toggle("err", !termsCheck.checked);
-  if (!termsCheck.checked) valid = false;
-
-  if (valid) {
-    try { localStorage.setItem("useremail", email.value); } catch (e) { }
-    popup.classList.add("active");
-    okBtn.focus();
-  } else if (typeof gsap !== "undefined") {
-    gsap.fromTo("#box", { x: -8 }, { x: 0, duration: .5, ease: "elastic.out(1,.3)" });
-  }
-}
-signBtn.addEventListener("click", signup);
-okBtn.addEventListener("click", () => { window.location.href = "login.html"; });
-termsCheck.addEventListener("change", () => termsBox.classList.remove("err"));
-document.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.tagName === "INPUT" && e.target.type !== "checkbox") signup(); });
-
-// fallback for broken avatar image
-$("#rev").addEventListener("error", function () { this.style.display = "none"; }, { once: true });
-
-// entrance animation
-if (typeof gsap !== "undefined" && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  gsap.timeline({ defaults: { ease: "power3.out" } })
-    .from(".logo, .back", { y: -20, opacity: 0, duration: .6, stagger: .1 })
-    .from(".hero h1", { y: 40, opacity: 0, duration: .9 }, "-=.3")
-    .from(".hero>p, .points div, .mini div, .review", { y: 30, opacity: 0, duration: .7, stagger: .08 }, "-=.5")
-    .from(".box > *", { y: 24, opacity: 0, duration: .6, stagger: .05 }, "-=1.2");
-}
-</script>
+    // entrance animation
+    if (typeof gsap !== "undefined" && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.timeline({ defaults: { ease: "power3.out" } })
+        .from(".logo, .back", { y: -20, opacity: 0, duration: .6, stagger: .1 })
+        .from(".hero h1", { y: 40, opacity: 0, duration: .9 }, "-=.3")
+        .from(".hero>p, .points div, .mini div, .review", { y: 30, opacity: 0, duration: .7, stagger: .08 }, "-=.5")
+        .from(".box > *", { y: 24, opacity: 0, duration: .6, stagger: .05 }, "-=1.2");
+    }
+  </script>
 </body>

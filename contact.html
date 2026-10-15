@@ -117,8 +117,6 @@
             color: transparent
         }
 
-
-
         /* page hero */
         .phero {
             position: relative;
@@ -383,7 +381,6 @@
         }
 
         .field input,
-        .field select,
         .field textarea {
             width: 100%;
             padding: 15px 18px;
@@ -401,19 +398,13 @@
             min-height: 130px
         }
 
-        .field select option {
-            background: var(--panel)
-        }
-
         .field input:focus,
-        .field select:focus,
         .field textarea:focus {
             outline: none;
             border-color: var(--sun)
         }
 
         .field.err input,
-        .field.err select,
         .field.err textarea {
             border-color: #ff7b8a
         }
@@ -796,7 +787,10 @@
         <div class="wrap">
             <a href="index.html" class="logo"><img src="./src/logo.webp" alt="Pipeworks"></a>
             <nav class="nav" id="nav">
+                <div class="sidetop">
+                       <a href="index.html" class="logo"><img src="./src/logo.webp" alt="Pipeworks"></a>
                 <span class="material-symbols-outlined close-btn" id="closeBtn">close</span>
+                </div>
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="service.html">Services</a>
@@ -805,8 +799,11 @@
             </nav>
             <div class="head-actions">
                 <a href="login.html" class="btn btn-main" style="padding:11px 22px">Login</a>
-                <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span
+                 <div class="loginicon">
+                    <a href="login.html"><span class="material-symbols-outlined logicon">person</span></a>
+                    <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span
                         class="material-symbols-outlined">menu</span></button>
+                </div>
             </div>
         </div>
     </header>
@@ -814,7 +811,7 @@
     <main>
         <section class="phero">
             <div class="phero-bg"><img
-                    src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1600&q=70"
+                    src="./src/image_6.webp"
                     alt=""></div>
             <div class="wrap">
                 <div class="crumb"><a href="index.html">Home</a><b>/</b><span>Contact</span></div>
@@ -833,22 +830,22 @@
                     <p>Pick whichever channel suits you best.</p>
                 </div>
                 <div class="info-grid">
-                    <div class="info">
+                    <div class="info errorpage">
                         <div class="info-ic"><span class="material-symbols-outlined">call</span></div>
                         <h3>Call us</h3>
-                        <p>Speak to an engineer, Monday to Saturday.</p><a class="val" href="tel:+919876543210">+91
+                        <p> Speak to an engineer, Monday to Saturday.</p><a class="val" href="404.html">+91
                             09876 54321</a>
                     </div>
-                    <div class="info">
+                    <div class="info errorpage">
                         <div class="info-ic"><span class="material-symbols-outlined">mail</span></div>
                         <h3>Email us</h3>
                         <p>Send architecture questions or project briefs.</p><a class="val"
-                            href="mailto:hello@pipeworks.dev">hello@pipeworks.dev</a>
+                            href="404.html">hello@pipeworks.dev</a>
                     </div>
-                    <div class="info">
+                    <div class="info errorpage">
                         <div class="info-ic"><span class="material-symbols-outlined">location_on</span></div>
                         <h3>Visit us</h3>
-                        <p>Drop by our office, ideally after booking a slot.</p><a class="val" href="#visit">25, Daniel
+                        <p>Drop by our office, ideally after booking a slot.</p><a class="val" href="404.html">25, Daniel
                             Street, Chennai</a>
                     </div>
                 </div>
@@ -874,17 +871,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="field"><label for="phone">Phone</label><input id="phone" type="tel"
-                                        placeholder="+91" autocomplete="tel"><span class="emsg"></span></div>
-                                <div class="field"><label for="service">I need help with *</label><select id="service">
-                                        <option value="">Select a service</option>
-                                        <option>CI/CD pipelines</option>
-                                        <option>Kubernetes management</option>
-                                        <option>Infrastructure as code</option>
-                                        <option>Monitoring and alerts</option>
-                                        <option>DevSecOps</option>
-                                        <option>Cloud cost control</option>
-                                    </select><span class="emsg"></span></div>
+                                <div class="field"><label for="phone">Phone *</label><input id="phone" type="tel"
+                                        inputmode="tel" maxlength="16" placeholder="+91 98765 43210"
+                                        autocomplete="tel"><span class="emsg"></span></div>
+                                <div class="field"><label for="service">I need help with *</label><input id="service"
+                                        type="text" placeholder="e.g. CI/CD pipelines, Kubernetes..."
+                                        autocomplete="off"><span class="emsg"></span></div>
                             </div>
                             <div class="field"><label for="msg">Tell us about your setup *</label><textarea id="msg"
                                     placeholder="Cloud provider, team size, what hurts today..."></textarea><span
@@ -935,7 +927,7 @@
                 </div>
                 <div class="loc" id="loc">
                     <div class="loc-img"><img
-                            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=70"
+                            src="./src/clt10.webp"
                             alt="Pipeworks office"><span class="pin"><span
                                 class="material-symbols-outlined">location_on</span></span></div>
                     <div class="loc-body">
@@ -944,7 +936,7 @@
                             available. Please book a slot so we can have a meeting room ready.</p>
                         <p class="mono" style="color:var(--sun);font-size:13px">hello@pipeworks.dev</p>
                         <a href="https://maps.google.com/?q=Daniel+Street+Chennai" target="_blank" rel="noopener"
-                            class="btn btn-sun"><span class="material-symbols-outlined">directions</span>Get
+                            class="btn btn-sun errorpage"><span class="material-symbols-outlined">directions</span>Get
                             directions</a>
                     </div>
                 </div>
@@ -1029,7 +1021,7 @@
                     <span class="ring r1"></span><span class="ring r2"></span>
                     <h2 data-split>Prefer to talk right now?</h2>
                     <p>Call during working hours and an engineer will pick up. No forms, no waiting.</p>
-                    <a href="tel:+919876543210" class="btn"><span class="material-symbols-outlined">call</span>Call +91
+                    <a href="404.html" class="btn"><span class="material-symbols-outlined">call</span>Call +91
                         09876 54321</a>
                 </div>
             </div>
@@ -1078,11 +1070,11 @@
                 </div>
                 <div class="newcontact">
                     <h3>Talk to us</h3>
-                    <div class="contact-line"><span class="material-symbols-outlined">location_on</span><span>25, Daniel
+                    <div class="contact-line errorpage"><span class="material-symbols-outlined">location_on</span><span>25, Daniel
                             Street, Chennai</span></div>
-                    <div class="contact-line"><span
+                    <div class="contact-line errorpage"><span
                             class="material-symbols-outlined">mail</span><span>hello@pipeworks.dev</span></div>
-                    <div class="contact-line"><span class="material-symbols-outlined">call</span><span>+91 09876
+                    <div class="contact-line errorpage"><span class="material-symbols-outlined">call</span><span>+91 09876
                             54321</span></div>
                 </div>
             </div>
@@ -1118,8 +1110,14 @@
         const rules = {
             name: v => v.length >= 2 || "Please enter your full name",
             email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Please enter a valid email address",
-            phone: v => !v || /^[+\d][\d\s-]{7,15}$/.test(v) || "Please enter a valid phone number",
-            service: v => !!v || "Please choose a service",
+            phone: v => {
+                if (!v) return "Please enter your phone number";
+                const n = v.replace(/[\s-]/g, "");
+                const india = /^(\+91|91|0)?[6-9]\d{9}$/.test(n);      // 9876543210, 09876543210, +919876543210
+                const intl = /^\+(?!91)\d{8,15}$/.test(n);            // other countries: +14155552671
+                return india || intl || "Please enter a valid phone number (10 digits)";
+            },
+            service: v => v.length >= 2 || "Please tell us what you need help with",
             msg: v => v.length >= 10 || "Please add a few more details (10+ characters)"
         };
         function check(id) {
@@ -1130,6 +1128,12 @@
             return r === true;
         }
         Object.keys(rules).forEach(id => $("#" + id).addEventListener("blur", () => check(id)));
+
+        // phone: allow only digits, +, spaces and hyphens while typing
+        $("#phone").addEventListener("input", e => {
+            e.target.value = e.target.value.replace(/(?!^\+)[^\d\s-]/g, "");
+            if (e.target.closest(".field").classList.contains("err")) check("phone");
+        });
         $("#cform").addEventListener("submit", e => {
             e.preventDefault();
             const ok = Object.keys(rules).map(check).every(Boolean);
@@ -1219,6 +1223,14 @@
             gsap.from(".footer-top > div", { y: 50, opacity: 0, stagger: .12, duration: .9, ease: "power3.out", scrollTrigger: { trigger: ".footer-top", start: "top 92%" } });
             gsap.from(".footer-bottom", { opacity: 0, y: 20, duration: .8, scrollTrigger: { trigger: ".footer-bottom", start: "top 100%" } });
         }
+
+
+        let errorpage = document.querySelectorAll(".errorpage")
+        errorpage.forEach((err) => {
+            err.addEventListener("click", () => {
+                window.location.href = "404.html"
+            })
+        })
     </script>
 </body>
 

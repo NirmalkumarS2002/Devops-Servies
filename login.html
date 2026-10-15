@@ -488,7 +488,8 @@
             gap: 12px;
             color: var(--muted);
             font-size: 13px;
-            margin: 22px 0 16px
+            margin-block: 20px;
+            margin-top: 50px;
         }
 
         .or::before,
@@ -684,9 +685,7 @@
                 </div>
             </div>
             <div class="review">
-                <img id="rev"
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=70"
-                    alt="Arjun Mehta">
+                <img id="rev" src="./src/img15.webp" alt="Arjun Mehta">
                 <p>"Our releases went from a weekly event to ten a day. The team just handled it."<b>Arjun Mehta, CTO at
                         PayLeaf</b></p>
             </div>
@@ -759,11 +758,11 @@
         const okBtn = document.querySelector("#okBtn");
         const roleSub = document.querySelector("#roleSub");
 
-        
-// Dashboard-lendhu Back vandhaal popup hide aagum
-window.addEventListener("pageshow", function () {
-    popup.classList.remove("active");
-});
+
+        // Dashboard-lendhu Back vandhaal popup hide aagum
+        window.addEventListener("pageshow", function () {
+            popup.classList.remove("active");
+        });
 
 
         let selectedRole = "admin";
@@ -818,10 +817,10 @@ window.addEventListener("pageshow", function () {
         loginBtn.addEventListener("click", login);
         [email, password].forEach(el => el.addEventListener("keydown", e => { if (e.key === "Enter") login(); }));
         okBtn.addEventListener("click", () => {
-             window.location.href = redirectUrl; 
-             email.value=""
-             password.value=""
-            });
+            window.location.href = redirectUrl;
+            email.value = ""
+            password.value = ""
+        });
 
         // fallback for broken avatar image
         document.getElementById("rev").addEventListener("error", function () { this.style.display = "none"; }, { once: true });

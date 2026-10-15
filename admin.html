@@ -33,6 +33,10 @@
             box-sizing: border-box
         }
 
+        html {
+            overflow-x: hidden
+        }
+
         body {
             font-family: "Sora", sans-serif;
             background: var(--paper);
@@ -183,6 +187,10 @@
             border-radius: 16px;
             padding: 12px;
             margin-top: 10px
+        }
+
+        .side-user .uname{
+            font-size: 12px;
         }
 
         .side-user b {
@@ -1236,7 +1244,7 @@
                 cost</button>
         </nav>
         <div class="side-user"><span class="av"><i class="ini">A</i><img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=70"
+                    src="./src/img18.webp"
                     alt="" onerror="this.remove()"></span>
             <div><b class="uname">Arun Kumar</b><small>Platform admin</small></div>
         </div>
@@ -1260,7 +1268,7 @@
                     <button class="ib" id="bell" aria-label="Notifications"><span
                             class="material-symbols-outlined">notifications</span><span class="dot"></span></button>
                     <div class="me"><span class="av"><i class="ini">A</i><img
-                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=70"
+                                src="./src/img18.webp"
                                 alt="" onerror="this.remove()"></span>
                         <div class="txt"><b class="uname">Arun Kumar</b><small>Platform admin</small></div>
                     </div>
@@ -1301,7 +1309,7 @@
             <!-- OVERVIEW -->
             <section class="view active" id="overview">
                 <div class="welcome"><img
-                        src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1400&q=70"
+                        src="./src/image_27.webp"
                         alt="" onerror="this.remove()">
                     <div>
                         <h2>Welcome back, <span class="uname2">Arun</span></h2>
@@ -1696,7 +1704,7 @@
                     </div>
                     <div class="ships">
                         <div class="ship"><img class="ship-img"
-                                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=70"
+                                src="./src/image_15.webp"
                                 alt="Server racks" loading="lazy" onerror="this.remove()">
                             <div class="between"><b>eks-payleaf-prod</b><span class="badge ok">Healthy</span></div>
                             <p>AWS, ap-south-1, 24 nodes</p>
@@ -1704,7 +1712,7 @@
                             <div class="between muted"><span>CPU 52%</span><span>K8s 1.30</span></div>
                         </div>
                         <div class="ship"><img class="ship-img"
-                                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=70"
+                                src="./src/image_16.webp"
                                 alt="Global cloud network" loading="lazy" onerror="this.remove()">
                             <div class="between"><b>eks-cartly-prod</b><span class="badge out">High CPU</span></div>
                             <p>AWS, ap-south-1, 32 nodes</p>
@@ -1712,7 +1720,7 @@
                             <div class="between muted"><span>CPU 91%</span><span>K8s 1.29</span></div>
                         </div>
                         <div class="ship"><img class="ship-img"
-                                src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=70"
+                                src="./src/image_17.webp"
                                 alt="Data center" loading="lazy" onerror="this.remove()">
                             <div class="between"><b>aks-finwise-prod</b><span class="badge ok">Healthy</span></div>
                             <p>Azure, Central India, 18 nodes</p>
@@ -1720,7 +1728,7 @@
                             <div class="between muted"><span>CPU 44%</span><span>K8s 1.30</span></div>
                         </div>
                         <div class="ship"><img class="ship-img"
-                                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=70"
+                                src="./src/image_18.webp"
                                 alt="Cloud infrastructure" loading="lazy" onerror="this.remove()">
                             <div class="between"><b>gke-novamart-prod</b><span class="badge low">Upgrading</span></div>
                             <p>GCP, asia-south1, 20 nodes</p>
@@ -1728,7 +1736,7 @@
                             <div class="between muted"><span>CPU 63%</span><span>K8s 1.29 to 1.30</span></div>
                         </div>
                         <div class="ship"><img class="ship-img"
-                                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=70"
+                                src="./src/image_19.webp"
                                 alt="Secure servers" loading="lazy" onerror="this.remove()">
                             <div class="between"><b>eks-zenbase-stage</b><span class="badge ok">Healthy</span></div>
                             <p>AWS, ap-south-1, 8 nodes</p>
@@ -1736,7 +1744,7 @@
                             <div class="between muted"><span>CPU 36%</span><span>K8s 1.30</span></div>
                         </div>
                         <div class="ship"><img class="ship-img"
-                                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=70"
+                                src="./src/img9.webp"
                                 alt="Server room" loading="lazy" onerror="this.remove()">
                             <div class="between"><b>aks-medilink-prod</b><span class="badge low">Warning</span></div>
                             <p>Azure, South India, 14 nodes</p>
@@ -1971,7 +1979,7 @@
                             <tr>
                                 <td>
                                     <div class="cell"><span class="av sm"><i>P</i><img
-                                                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=120&q=70"
+                                                src="./src/img13.webp"
                                                 alt="" loading="lazy" onerror="this.remove()"></span><b>PayLeaf</b>
                                     </div>
                                 </td>
@@ -1984,7 +1992,7 @@
                             <tr>
                                 <td>
                                     <div class="cell"><span class="av sm"><i>C</i><img
-                                                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=120&q=70"
+                                                src="./src/img14.webp"
                                                 alt="" loading="lazy" onerror="this.remove()"></span><b>Cartly</b></div>
                                 </td>
                                 <td>Bengaluru</td>
@@ -1996,7 +2004,7 @@
                             <tr>
                                 <td>
                                     <div class="cell"><span class="av sm"><i>F</i><img
-                                                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=120&q=70"
+                                                src="./src/img15.webp"
                                                 alt="" loading="lazy" onerror="this.remove()"></span><b>Finwise</b>
                                     </div>
                                 </td>
@@ -2009,7 +2017,7 @@
                             <tr>
                                 <td>
                                     <div class="cell"><span class="av sm"><i>N</i><img
-                                                src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=120&q=70"
+                                                src="./src/img16.webp"
                                                 alt="" loading="lazy" onerror="this.remove()"></span><b>NovaMart</b>
                                     </div>
                                 </td>
@@ -2022,7 +2030,7 @@
                             <tr>
                                 <td>
                                     <div class="cell"><span class="av sm"><i>Z</i><img
-                                                src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=120&q=70"
+                                                src="./src/img17.webp"
                                                 alt="" loading="lazy" onerror="this.remove()"></span><b>Zenbase</b>
                                     </div>
                                 </td>
@@ -2035,7 +2043,7 @@
                             <tr>
                                 <td>
                                     <div class="cell"><span class="av sm"><i>M</i><img
-                                                src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=120&q=70"
+                                                src="./src/img18.webp"
                                                 alt="" loading="lazy" onerror="this.remove()"></span><b>Medilink</b>
                                     </div>
                                 </td>
