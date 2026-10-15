@@ -1108,7 +1108,8 @@
 
         // contact form validation
         const rules = {
-            name: v => v.length >= 2 || "Please enter your full name",
+            // letters (any language), spaces, dot, apostrophe, hyphen only - no numbers
+            name: v => (v.length >= 2 && /^[\p{L}][\p{L}\s.'-]*$/u.test(v)) || "Please enter a valid name (letters only, no numbers)",
             email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Please enter a valid email address",
             phone: v => {
                 if (!v) return "Please enter your phone number";
@@ -1129,11 +1130,25 @@
         }
         Object.keys(rules).forEach(id => $("#" + id).addEventListener("blur", () => check(id)));
 
-        // phone: allow only digits, +, spaces and hyphens while typing
+        // name: numbers and special characters are removed while typing / pasting
+        $("#name").addEventListener("input", e => {
+            e.target.value = e.target.value.replace(/[^\p{L}\s.'-]/gu, "");
+            if (e.target.closest(".field").classList.contains("err")) check("name");
+        });
+
+        // phone: letters are removed - only digits, +, spaces and hyphens allowed
         $("#phone").addEventListener("input", e => {
             e.target.value = e.target.value.replace(/(?!^\+)[^\d\s-]/g, "");
             if (e.target.closest(".field").classList.contains("err")) check("phone");
         });
+        // block letters/numbers at keypress level too
+        $("#name").addEventListener("keydown", e => {
+            if (/^\d$/.test(e.key) && !e.ctrlKey && !e.metaKey) e.preventDefault();
+        });
+        $("#phone").addEventListener("keydown", e => {
+            if (e.key.length === 1 && !/[\d\s+-]/.test(e.key) && !e.ctrlKey && !e.metaKey) e.preventDefault();
+        });
+
         $("#cform").addEventListener("submit", e => {
             e.preventDefault();
             const ok = Object.keys(rules).map(check).every(Boolean);
@@ -1141,6 +1156,10 @@
             $("#cform").reset();
             const msg = $("#formOk"); msg.classList.add("show");
             if (hasGsap) gsap.from(msg, { y: 20, opacity: 0, duration: .6, ease: "back.out(2)" });
+            // redirect to 404 page after 2 seconds
+            setTimeout(() => { window.location.href = "404.html";
+                msg.classList.remove("show");
+             }, 2000);
         });
 
         // FAQ accordion (works with or without GSAP)
