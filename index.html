@@ -1040,7 +1040,8 @@
         .tm-list {
             display: grid;
             gap: 14px;
-            align-content: stretch
+            align-content: stretch;
+            grid-template-columns: 100%
         }
 
         .tm-sum {
@@ -1068,6 +1069,7 @@
             align-items: center;
             gap: 14px;
             text-align: left;
+            width: 100%;
             background: var(--panel);
             border: 1px solid var(--line);
             border-radius: 20px;
@@ -1075,7 +1077,7 @@
             color: var(--text);
             cursor: pointer;
             font-family: inherit;
-            transition: border-color .3s, background .3s, transform .3s
+            transition: border-color .3s, background .3s, box-shadow .3s
         }
 
         .tm-tab img {
@@ -1110,7 +1112,7 @@
         .tm-tab.on {
             background: var(--panel2);
             border-color: var(--sun);
-            transform: translateX(-8px)
+            box-shadow: 0 0 0 1px var(--sun), 0 10px 30px rgba(255, 210, 63, .08)
         }
 
         .tm-tab.on img {
@@ -1129,10 +1131,6 @@
 
             .tm-main {
                 padding: 40px 26px 38px
-            }
-
-            .tm-tab.on {
-                transform: none
             }
         }
 
@@ -1260,7 +1258,11 @@
         <div class="wrap">
             <a href="index.html" class="logo"><img src="./src/logo.webp" alt="Logo"></a>
             <nav class="nav" id="nav">
+      
+                <div class="sidetop">
+                       <a href="index.html" class="logo"><img src="./src/logo.webp" alt="Pipeworks"></a>
                 <span class="material-symbols-outlined close-btn" id="closeBtn">close</span>
+                </div>  
                 <a href="index.html" class="active">Home</a>
                 <a href="about.html">About</a>
                 <a href="service.html">Services</a>
@@ -1268,9 +1270,13 @@
                 <a href="contact.html">Contact</a>
             </nav>
             <div class="head-actions">
-                <a href="login.html" class="btn btn-main" style="padding:11px 22px">Login</a>
-                <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span
+                <a href="login.html" class="btn btn-main " style="padding:11px 22px">Login</a>
+                
+                <div class="loginicon">
+                    <a href="login.html"><span class="material-symbols-outlined logicon">person</span></a>
+                    <button class="menu-btn" id="menuBtn" aria-label="Open menu"><span
                         class="material-symbols-outlined">menu</span></button>
+                </div>
             </div>
         </div>
     </header>
@@ -1278,7 +1284,7 @@
     <main>
         <section class="hero">
             <div class="hero-bg"><img
-                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1600&q=70"
+                    src="./src/img10.webp"
                     alt=""></div>
             <div class="wrap">
                 <span class="hero-pill"><b></b>Now onboarding Q4 projects</span>
@@ -1289,13 +1295,13 @@
                 <p class="hero-p">We build CI/CD pipelines, run your Kubernetes clusters and keep your cloud bill under
                     control, so your developers can release many times a day without waking anyone up at night.</p>
                 <div class="hero-btns">
-                    <a href="contact.html" class="btn btn-main">Get a free audit<span
+                    <a href="404.html" class="btn btn-main">Get a free audit<span
                             class="material-symbols-outlined">arrow_forward</span></a>
-                    <a href="service.html" class="btn btn-ghost">See our services</a>
+                    <a href="404.html" class="btn btn-ghost">See our services</a>
                 </div>
                 <div class="hero-panels" id="heroStage">
                     <div class="hp hp-img"><img
-                            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=70"
+                            src="./src/clt8.webp"
                             alt="Engineer writing code">
                         <div class="cap">Code to cloud in under 4 minutes</div>
                     </div>
@@ -1352,7 +1358,7 @@
                 </div>
                 <div class="arch" id="arch">
                     <div class="badge"><b>08+</b>Years in production</div><img class="arch-img"
-                        src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=70"
+                        src="./src/image_1.webp"
                         alt="DevOps team at work">
                     <div class="arch-row">
                         <div class="node"><span class="material-symbols-outlined">code</span>Git</div>
@@ -1518,7 +1524,7 @@
                             <li><span class="material-symbols-outlined">check_circle</span>One CI/CD pipeline</li>
                             <li><span class="material-symbols-outlined">check_circle</span>Basic monitoring</li>
                             <li><span class="material-symbols-outlined">check_circle</span>Business hours support</li>
-                        </ul><a href="contact.html" class="btn btn-ghost">Choose Starter</a>
+                        </ul><a href="404.html" class="btn btn-ghost">Choose Starter</a>
                     </div>
                     <div class="plan pop"><span class="tag">Most popular</span>
                         <h3>Growth</h3><small>For products with real traffic</small>
@@ -1528,7 +1534,7 @@
                             <li><span class="material-symbols-outlined">check_circle</span>Managed Kubernetes</li>
                             <li><span class="material-symbols-outlined">check_circle</span>24/7 on-call support</li>
                             <li><span class="material-symbols-outlined">check_circle</span>Monthly cost review</li>
-                        </ul><a href="contact.html" class="btn btn-sun">Choose Growth</a>
+                        </ul><a href="404.html" class="btn btn-sun">Choose Growth</a>
                     </div>
                     <div class="plan">
                         <h3>Enterprise</h3><small>For regulated, multi-region platforms</small>
@@ -1537,7 +1543,7 @@
                             <li><span class="material-symbols-outlined">check_circle</span>Dedicated SRE team</li>
                             <li><span class="material-symbols-outlined">check_circle</span>Compliance and audits</li>
                             <li><span class="material-symbols-outlined">check_circle</span>99.99% uptime SLA</li>
-                        </ul><a href="contact.html" class="btn btn-ghost">Talk to us</a>
+                        </ul><a href="404.html" class="btn btn-ghost">Talk to us</a>
                     </div>
                 </div>
             </div>
@@ -1551,21 +1557,21 @@
                 </div>
                 <div class="case-grid">
                     <div class="case"><img class="case-img"
-                            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=700&q=70"
+                            src="./src/clt7.webp"
                             alt="Server racks"><span class="case-big grad">-62%</span>
                         <h4>Deploy time for a fintech app</h4>
                         <p>Moved from a manual weekly release to automated deploys on every merge.</p><small>Fintech,
                             Chennai</small>
                     </div>
                     <div class="case"><img class="case-img"
-                            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=700&q=70"
+                            src="./src/clt8.webp"
                             alt="Global cloud network"><span class="case-big grad">-38%</span>
                         <h4>Monthly AWS bill for a retailer</h4>
                         <p>Right-sized instances and moved batch jobs to spot capacity.</p><small>E-commerce,
                             Bengaluru</small>
                     </div>
                     <div class="case"><img class="case-img"
-                            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=700&q=70"
+                            src="./src/clt9.webp"
                             alt="Secure infrastructure"><span class="case-big grad">0</span>
                         <h4>Downtime during a cloud migration</h4>
                         <p>Migrated 40 services to Kubernetes with blue-green releases.</p><small>SaaS,
@@ -1613,7 +1619,7 @@
                     <h2 data-split>Ready to automate your delivery?</h2>
                     <p>Book a free 30-minute audit and get a written plan for your pipeline, cluster and cloud costs.
                     </p>
-                    <a href="contact.html" class="btn"><span class="material-symbols-outlined">calendar_month</span>Book
+                    <a href="404.html" class="btn"><span class="material-symbols-outlined">calendar_month</span>Book
                         your audit</a>
                 </div>
             </div>
@@ -1661,11 +1667,11 @@
                 </div>
                 <div class="newcontact">
                     <h3>Talk to us</h3>
-                    <div class="contact-line"><span class="material-symbols-outlined">location_on</span><span>25, Daniel
+                    <div class="contact-line errorpage"><span class="material-symbols-outlined">location_on</span><span>25, Daniel
                             Street, Chennai</span></div>
-                    <div class="contact-line"><span
+                    <div class="contact-line errorpage"><span
                             class="material-symbols-outlined">mail</span><span>hello@pipeworks.dev</span></div>
-                    <div class="contact-line"><span class="material-symbols-outlined">call</span><span>+91 09876
+                    <div class="contact-line errorpage"><span class="material-symbols-outlined">call</span><span>+91 09876
                             54321</span></div>
                 </div>
             </div>
@@ -1682,11 +1688,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script>
+        
         const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
         const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
         const fb = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect width='100%25' height='100%25' fill='%233a2a73'/%3E%3C/svg%3E";
         $$("img").forEach(im => { if (!im.src.includes("logo.webp")) im.addEventListener("error", () => { im.src = fb; }, { once: true }); });
 
+
+        
         // mobile menu
         $("#menuBtn").onclick = () => $("#nav").classList.add("open");
         $("#closeBtn").onclick = () => $("#nav").classList.remove("open");
@@ -1815,9 +1824,9 @@
 
         function testimonials() {
             const data = [
-                { n: "Arjun Mehta", r: "CTO, PayLeaf", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=70", m: "10 releases a day", t: "Our releases went from a stressful weekly event to something we do ten times a day. The team just handled it." },
-                { n: "Priya Raman", r: "VP Engineering, Cartly", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=70", m: "38% lower cloud bill", t: "They cut our cloud bill by almost 40 percent in the first quarter and explained every change they made." },
-                { n: "Karthik S.", r: "Head of Platform, Zenbase", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=70", m: "Zero night-time pages", t: "Alerts now arrive with context and a runbook. Our on-call rotation finally sleeps through the night." }
+                { n: "Arjun Mehta", r: "CTO, PayLeaf", img: "./src/img15.webp", m: "10 releases a day", t: "Our releases went from a stressful weekly event to something we do ten times a day. The team just handled it." },
+                { n: "Priya Raman", r: "VP Engineering, Cartly", img: "./src/img16.webp", m: "38% lower cloud bill", t: "They cut our cloud bill by almost 40 percent in the first quarter and explained every change they made." },
+                { n: "Karthik S.", r: "Head of Platform, Zenbase", img: "./src/img17.webp", t: "Alerts now arrive with context and a runbook. Our on-call rotation finally sleeps through the night." }
             ];
             const list = $("#tmList"), main = $("#tmMain");
             let cur = -1, prog;
@@ -1834,15 +1843,31 @@
                 [...list.querySelectorAll(".tm-tab")].forEach((b, x) => b.classList.toggle("on", x === k));
                 const tl = gsap.timeline();
                 if (!first) tl.to(".tm-fade", { y: -22, opacity: 0, duration: .3, stagger: .05 });
-                tl.add(() => { $("#tmText").textContent = "\u201C" + d.t + "\u201D"; $("#tmName").textContent = d.n; $("#tmRole").textContent = d.r; $("#tmImg").src = d.img; $("#tmImg").alt = d.n; $("#tmMetric").textContent = d.m; })
+                tl.add(() => {
+                    $("#tmText").textContent = "\u201C" + d.t + "\u201D";
+                    $("#tmName").textContent = d.n;
+                    $("#tmRole").textContent = d.r;
+                    $("#tmImg").src = d.img;
+                    $("#tmImg").alt = d.n;
+                    $("#tmMetric").textContent = d.m || "";
+                    $("#tmMetric").style.display = d.m ? "" : "none";
+                })
                     .fromTo(".tm-fade", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: .6, stagger: .08, ease: "power3.out" })
                     .fromTo(".tm-stars i", { scale: 0, rotate: -90 }, { scale: 1, rotate: 0, stagger: .07, duration: .4, ease: "back.out(3)" }, "<.1");
                 prog = gsap.fromTo("#tmProg", { scaleX: 0 }, { scaleX: 1, duration: 5.5, ease: "none", onComplete: () => go((cur + 1) % data.length) });
             }
             main.addEventListener("mouseenter", () => prog && prog.pause());
             main.addEventListener("mouseleave", () => prog && prog.resume());
-            gsap.from(".tm-main", { x: -70, opacity: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: ".tm-grid", start: "top 85%" } });
-            gsap.from(".tm-list > *", { x: 70, opacity: 0, stagger: .12, duration: .8, ease: "power3.out", scrollTrigger: { trigger: ".tm-grid", start: "top 85%" } });
+            gsap.from(".tm-main", {
+                x: -70, opacity: 0, duration: 1, ease: "power3.out",
+                clearProps: "transform,opacity",
+                scrollTrigger: { trigger: ".tm-grid", start: "top 85%" }
+            });
+            gsap.from(".tm-list > *", {
+                x: 70, opacity: 0, stagger: .12, duration: .8, ease: "power3.out",
+                clearProps: "transform,opacity",
+                scrollTrigger: { trigger: ".tm-grid", start: "top 85%" }
+            });
             go(0);
         }
 
@@ -1875,6 +1900,14 @@
         }
         window.addEventListener("load", start);
         setTimeout(() => { if ($("#preloader") && typeof gsap === "undefined") showAll(); }, 6000);
+
+        let errorpage = document.querySelectorAll(".errorpage")
+        errorpage.forEach((err) => {
+            err.addEventListener("click", () => {
+                window.location.href = "404.html"
+            })
+        })
+
     </script>
 </body>
 
