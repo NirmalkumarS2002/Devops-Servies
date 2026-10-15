@@ -233,9 +233,18 @@ body.loading {
     position: sticky;
     top: 0;
     z-index: 900;
+    background: transparent;
+    border-bottom: 1px solid var(--line)
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
     background: rgba(18, 10, 43, .85);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line)
+    pointer-events: none
 }
 
 .header .wrap {
